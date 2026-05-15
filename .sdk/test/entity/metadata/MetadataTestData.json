@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "metadata": {
+      "METADATA00": {
+        "data_source": [],
+        "last_update": "s33",
+        "status": "s34",
+        "supported_currency": {},
+        "version": "s36"
+      },
+      "METADATA01": {
+        "data_source": [],
+        "last_update": "s65",
+        "status": "s66",
+        "supported_currency": {},
+        "version": "s68"
+      },
+      "METADATA02": {
+        "data_source": [],
+        "last_update": "s97",
+        "status": "s98",
+        "supported_currency": {},
+        "version": "s9a"
+      }
+    }
+  },
+  "new": {
+    "metadata": {
+      "metadata_ref01": {
+        "data_source": [],
+        "last_update": "sc9",
+        "status": "sca",
+        "supported_currency": {},
+        "version": "scc"
+      }
+    }
+  }
+}

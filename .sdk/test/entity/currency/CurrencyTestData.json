@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "currency": {
+      "CURRENCY00": {
+        "date": "s28",
+        "from": "s29",
+        "rate": 42,
+        "to": "s2b"
+      },
+      "CURRENCY01": {
+        "date": "s50",
+        "from": "s51",
+        "rate": 82,
+        "to": "s53"
+      },
+      "CURRENCY02": {
+        "date": "s78",
+        "from": "s79",
+        "rate": 122,
+        "to": "s7b"
+      }
+    }
+  },
+  "new": {
+    "currency": {
+      "currency_ref01": {
+        "date": "sa0",
+        "from": "sa1",
+        "rate": 162,
+        "to": "sa3"
+      }
+    }
+  }
+}

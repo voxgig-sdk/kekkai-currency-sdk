@@ -1,0 +1,413 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Kekkai Currency API",
+    "description": "Kekkai is an open-source API that allows you to collect and save historical currency data from various sources. It supports both cryptocurrencies and fiat currencies, enabling users to create exchange rate charts easily.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Kekkai API Support",
+      "url": "https://kekkai-docs.redume.su"
+    },
+    "license": {
+      "name": "Open Source",
+      "url": "https://github.com/Redume/Kekkai"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.kekkai.redume.su",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:8080",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/api/getRate": {
+      "get": {
+        "summary": "Get currency rate",
+        "description": "Retrieves the exchange rate for specified currency pairs. Supports both cryptocurrencies and fiat currencies.",
+        "operationId": "getCurrencyRate",
+        "tags": [
+          "Currency"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Source currency code (e.g., USD, BTC, EUR)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Target currency code (e.g., EUR, ETH, JPY)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "EUR"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "Optional date for historical rate (format: YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-01-15"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved currency rate",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "description": "Source currency code",
+                      "example": "USD"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Target currency code",
+                      "example": "EUR"
+                    },
+                    "rate": {
+                      "type": "number",
+                      "format": "double",
+                      "description": "Exchange rate",
+                      "example": 0.92
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Date and time of the rate",
+                      "example": "2024-01-15T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Currency pair not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/getChart": {
+      "get": {
+        "summary": "Create charts",
+        "description": "Generates currency exchange rate charts based on historical data. Useful for visualizing currency trends over time.",
+        "operationId": "getChart",
+        "tags": [
+          "Charts"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "Source currency code",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "BTC"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "Target currency code",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Start date for chart data (format: YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-01-01"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "End date for chart data (format: YYYY-MM-DD)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "2024-12-31"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "description": "Time interval for data points (e.g., daily, weekly, monthly)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly"
+              ],
+              "default": "daily",
+              "example": "daily"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully generated chart data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "example": "BTC"
+                    },
+                    "to": {
+                      "type": "string",
+                      "example": "USD"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "type": "string",
+                            "format": "date-time",
+                            "example": "2024-01-01T00:00:00Z"
+                          },
+                          "rate": {
+                            "type": "number",
+                            "format": "double",
+                            "example": 42500.75
+                          }
+                        }
+                      }
+                    },
+                    "interval": {
+                      "type": "string",
+                      "example": "daily"
+                    }
+                  }
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/metadata": {
+      "get": {
+        "summary": "Get metadata",
+        "description": "Retrieves metadata information about the API, including supported currencies, data sources, and system status.",
+        "operationId": "getMetadata",
+        "tags": [
+          "Metadata"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "type": "string",
+                      "description": "API version",
+                      "example": "1.0.0"
+                    },
+                    "supportedCurrencies": {
+                      "type": "object",
+                      "properties": {
+                        "fiat": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "USD",
+                            "EUR",
+                            "GBP",
+                            "JPY"
+                          ]
+                        },
+                        "crypto": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "BTC",
+                            "ETH",
+                            "LTC",
+                            "XRP"
+                          ]
+                        }
+                      }
+                    },
+                    "dataSources": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "List of data sources used by the API",
+                      "example": [
+                        "CoinGecko",
+                        "ExchangeRates API"
+                      ]
+                    },
+                    "lastUpdate": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of last data update",
+                      "example": "2024-01-15T12:00:00Z"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "System status",
+                      "example": "operational"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Invalid currency code"
+          },
+          "code": {
+            "type": "integer",
+            "description": "Error code",
+            "example": 400
+          },
+          "details": {
+            "type": "string",
+            "description": "Additional error details",
+            "example": "The currency code 'XYZ' is not supported"
+          }
+        },
+        "required": [
+          "error",
+          "code"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Currency",
+      "description": "Operations related to currency exchange rates"
+    },
+    {
+      "name": "Charts",
+      "description": "Operations for generating currency exchange rate charts"
+    },
+    {
+      "name": "Metadata",
+      "description": "API metadata and system information"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API Documentation",
+    "url": "https://kekkai-docs.redume.su"
+  }
+}

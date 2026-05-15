@@ -1,0 +1,26 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: chart: {
+    path: "/api/getChart": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: currency: {
+    path: "/api/getRate": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: metadata: {
+    path: "/api/metadata": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "chart": {
+      "CHART00": {
+        "date": "s14",
+        "rate": 21
+      },
+      "CHART01": {
+        "date": "s28",
+        "rate": 41
+      },
+      "CHART02": {
+        "date": "s3c",
+        "rate": 61
+      }
+    }
+  },
+  "new": {
+    "chart": {
+      "chart_ref01": {
+        "date": "s50",
+        "rate": 81
+      }
+    }
+  }
+}

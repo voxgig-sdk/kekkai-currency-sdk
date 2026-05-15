@@ -1,0 +1,32 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Kekkai API Support"
+        url: "https://kekkai-docs.redume.su"
+      }
+      description: "Kekkai is an open-source API that allows you to collect and save historical currency data from various sources. It supports both cryptocurrencies and fiat currencies, enabling users to create exchange rate charts easily."
+      license: {
+        name: "Open Source"
+        url: "https://github.com/Redume/Kekkai"
+      }
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.kekkai.redume.su"
+        }
+        {
+          description: "Local development server"
+          url: "http://localhost:8080"
+        }
+      ]
+      title: "Kekkai Currency API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

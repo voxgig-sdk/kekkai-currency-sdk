@@ -1,0 +1,96 @@
+# Entity: chart
+
+main: kit: entity: chart: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rate"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "chart"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "2024-12-31"
+                kind: "query"
+                name: "end_date"
+                orig: "end_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "BTC"
+                kind: "query"
+                name: "from"
+                orig: "from"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "daily"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "2024-01-01"
+                kind: "query"
+                name: "start_date"
+                orig: "start_date"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "USD"
+                kind: "query"
+                name: "to"
+                orig: "to"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/api/getChart"
+          parts: [
+            "api"
+            "getChart"
+          ]
+          select: {
+            exist: [
+              "end_date"
+              "from"
+              "interval"
+              "start_date"
+              "to"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

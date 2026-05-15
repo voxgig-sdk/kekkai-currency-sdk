@@ -1,0 +1,28 @@
+# BasicCurrencyFlow
+
+main: kit: flow: BasicCurrencyFlow:
+{
+  entity: "currency",
+  kind: "basic",
+  name: "BasicCurrencyFlow",
+  step: [
+    {
+      input: {
+        ref: "currency_ref01",
+        srcdatavar: "currency_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-currency_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCurrencyFlow"
+}

@@ -1,0 +1,22 @@
+# BasicMetadataFlow
+
+main: kit: flow: BasicMetadataFlow:
+{
+  entity: "metadata",
+  kind: "basic",
+  name: "BasicMetadataFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "metadata_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicMetadataFlow"
+}
