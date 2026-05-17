@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/kekkai-currency-sdk"
-	"github.com/voxgig-sdk/kekkai-currency-sdk/core"
+	sdk "github.com/voxgig-sdk/kekkai-currency-sdk/go"
+	"github.com/voxgig-sdk/kekkai-currency-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/kekkai-currency-sdk/go/utility/struct"
 )
 
 func TestMetadataEntity(t *testing.T) {

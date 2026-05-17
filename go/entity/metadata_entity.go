@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/kekkai-currency-sdk/core"
+	"github.com/voxgig-sdk/kekkai-currency-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/kekkai-currency-sdk/go/utility/struct"
 )
 
 type MetadataEntity struct {

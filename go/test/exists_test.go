@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/kekkai-currency-sdk"
+	sdk "github.com/voxgig-sdk/kekkai-currency-sdk/go"
 )
 
 func TestExists(t *testing.T) {

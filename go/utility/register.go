@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/kekkai-currency-sdk/core"
+import "github.com/voxgig-sdk/kekkai-currency-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll

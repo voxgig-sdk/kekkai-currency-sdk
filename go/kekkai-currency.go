@@ -1,10 +1,10 @@
 package voxgigkekkaicurrencysdk
 
 import (
-	"github.com/voxgig-sdk/kekkai-currency-sdk/core"
-	"github.com/voxgig-sdk/kekkai-currency-sdk/entity"
-	"github.com/voxgig-sdk/kekkai-currency-sdk/feature"
-	_ "github.com/voxgig-sdk/kekkai-currency-sdk/utility"
+	"github.com/voxgig-sdk/kekkai-currency-sdk/go/core"
+	"github.com/voxgig-sdk/kekkai-currency-sdk/go/entity"
+	"github.com/voxgig-sdk/kekkai-currency-sdk/go/feature"
+	_ "github.com/voxgig-sdk/kekkai-currency-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/kekkai-currency-sdk/go/utility/struct"
 )
 
 type KekkaiCurrencySDK struct {

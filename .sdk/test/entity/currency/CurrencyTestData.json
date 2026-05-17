@@ -5,19 +5,22 @@
         "date": "s28",
         "from": "s29",
         "rate": 42,
-        "to": "s2b"
+        "to": "s2b",
+        "id": "CURRENCY00"
       },
       "CURRENCY01": {
         "date": "s50",
         "from": "s51",
         "rate": 82,
-        "to": "s53"
+        "to": "s53",
+        "id": "CURRENCY01"
       },
       "CURRENCY02": {
         "date": "s78",
         "from": "s79",
         "rate": 122,
-        "to": "s7b"
+        "to": "s7b",
+        "id": "CURRENCY02"
       }
     }
   },
