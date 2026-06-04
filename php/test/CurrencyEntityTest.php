@@ -85,7 +85,6 @@ function currency_basic_setup($extra)
         "KEKKAICURRENCY_TEST_CURRENCY_ENTID" => $idmap,
         "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
         "KEKKAICURRENCY_TEST_EXPLAIN" => "FALSE",
-        "KEKKAICURRENCY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function currency_basic_setup($extra)
     if ($env["KEKKAICURRENCY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["KEKKAICURRENCY_APIKEY"],
             ],
             $extra ?? [],
         ]);

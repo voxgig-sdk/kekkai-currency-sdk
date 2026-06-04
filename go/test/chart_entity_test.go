@@ -119,7 +119,6 @@ func chartBasicSetup(extra map[string]any) *entityTestSetup {
 		"KEKKAICURRENCY_TEST_CHART_ENTID": idmap,
 		"KEKKAICURRENCY_TEST_LIVE":      "FALSE",
 		"KEKKAICURRENCY_TEST_EXPLAIN":   "FALSE",
-		"KEKKAICURRENCY_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["KEKKAICURRENCY_TEST_CHART_ENTID"])
@@ -130,7 +129,6 @@ func chartBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["KEKKAICURRENCY_APIKEY"],
 			},
 			extra,
 		})

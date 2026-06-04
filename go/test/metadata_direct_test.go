@@ -93,14 +93,12 @@ func metadataDirectSetup(mockres any) *metadataDirectSetupResult {
 	env := envOverride(map[string]any{
 		"KEKKAICURRENCY_TEST_METADATA_ENTID": map[string]any{},
 		"KEKKAICURRENCY_TEST_LIVE":    "FALSE",
-		"KEKKAICURRENCY_APIKEY":       "NONE",
 	})
 
 	live := env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["KEKKAICURRENCY_APIKEY"],
 		}
 		client := sdk.NewKekkaiCurrencySDK(mergedOpts)
 

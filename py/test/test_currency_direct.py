@@ -65,14 +65,12 @@ def _currency_direct_setup(mockres):
     env = runner.env_override({
         "KEKKAICURRENCY_TEST_CURRENCY_ENTID": {},
         "KEKKAICURRENCY_TEST_LIVE": "FALSE",
-        "KEKKAICURRENCY_APIKEY": "NONE",
     })
 
     live = env.get("KEKKAICURRENCY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("KEKKAICURRENCY_APIKEY"),
         }
         client = KekkaiCurrencySDK(merged_opts)
         return {
