@@ -10,7 +10,7 @@ The PHP SDK for the KekkaiCurrency API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/kekkai-currency-sdk
+composer require voxgig-sdk/kekkai-currency
 ```
 
 

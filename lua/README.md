@@ -10,7 +10,7 @@ The Lua SDK for the KekkaiCurrency API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install kekkai-currency-sdk
+luarocks install voxgig-sdk-kekkai-currency
 ```
 
 If the module is not yet published, add the source directory to

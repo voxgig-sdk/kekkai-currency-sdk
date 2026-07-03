@@ -8,12 +8,14 @@ source = {
   dir = "kekkai-currency-sdk/lua"
 }
 description = {
-  summary = "KekkaiCurrency SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Kekkai Currency public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/kekkai-currency-sdk",
+  issues_url = "https://github.com/voxgig-sdk/kekkai-currency-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "kekkai-currency" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

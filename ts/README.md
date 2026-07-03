@@ -10,7 +10,7 @@ The TypeScript SDK for the KekkaiCurrency API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install kekkai-currency
+npm install @voxgig-sdk/kekkai-currency
 ```
 ## Tutorial: your first API call
 

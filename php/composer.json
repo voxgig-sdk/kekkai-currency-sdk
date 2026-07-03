@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/kekkai-currency",
-  "description": "KekkaiCurrency SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Kekkai Currency public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "kekkai-currency"],
+  "homepage": "https://github.com/voxgig-sdk/kekkai-currency-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/kekkai-currency-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/kekkai-currency-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

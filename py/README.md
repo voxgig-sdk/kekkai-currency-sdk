@@ -10,7 +10,7 @@ The Python SDK for the KekkaiCurrency API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install kekkai-currency-sdk
+pip install voxgig-sdk-kekkai-currency
 ```
 
 Or install from source:

@@ -10,13 +10,13 @@ The Ruby SDK for the KekkaiCurrency API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install kekkai-currency-sdk
+gem install voxgig-sdk-kekkai-currency
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "kekkai-currency-sdk"
+gem "voxgig-sdk-kekkai-currency"
 ```
 
 Then run:
