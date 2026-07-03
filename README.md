@@ -1,20 +1,8 @@
 # KekkaiCurrency SDK
 
-Collect historical exchange rates for fiat and cryptocurrencies from open sources, with chart-ready output
+Kekkai Currency API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Kekkai Currency API
-
-[Kekkai](https://kekkai.redume.su) is an open-source service that collects and stores historical currency data from public sources, covering both fiat currencies and cryptocurrencies. The public instance at `https://api.kekkai.redume.su` exposes a small HTTP API for querying that history.
-
-What you get from the API:
-
-- Exchange rates for a single date or a date range (`/api/getRate`)
-- Chart-ready data series for a custom range or the past week (`/api/getChart`, `/api/getChart/week`)
-- Metadata about supported currencies and data sources (`/api/metadata`)
-
-The API is unauthenticated on the public instance and CORS is enabled on the working endpoints. Because Kekkai is self-hostable, the set of available currencies and the upstream data sources depend on the operator of each instance.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install kekkai-currency-sdk
 luarocks install kekkai-currency-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { KekkaiCurrencySDK } from 'kekkai-currency'
 
-const client = new KekkaiCurrencySDK({})
+const client = new KekkaiCurrencySDK({
+  apikey: process.env.KEKKAI-CURRENCY_APIKEY,
+})
 
 // List all charts
 const charts = await client.Chart().list()
+console.log(charts.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Chart** | Time-series exchange-rate data shaped for plotting, returned by `/api/getChart` for a custom date range and `/api/getChart/week` for the trailing week. | `/api/getChart` |
-| **Currency** | Historical exchange-rate lookups for a single day or a date range via `/api/getRate`, covering both fiat and cryptocurrency pairs. | `/api/getRate` |
-| **Metadata** | Descriptive information about the instance's supported currencies and underlying data sources, exposed via `/api/metadata`. | `/api/metadata` |
+| **Chart** |  | `/api/getChart` |
+| **Currency** |  | `/api/getRate` |
+| **Metadata** |  | `/api/metadata` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -112,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from kekkaicurrency_sdk import KekkaiCurrencySDK
 
-client = KekkaiCurrencySDK({})
+client = KekkaiCurrencySDK({
+    "apikey": os.environ.get("KEKKAI-CURRENCY_APIKEY"),
+})
 
 # List all charts
-charts, err = client.Chart(None).list(None, None)
+charts, err = client.Chart().list()
+print(charts)
 ```
 
 ### PHP
@@ -126,10 +120,13 @@ charts, err = client.Chart(None).list(None, None)
 <?php
 require_once 'kekkaicurrency_sdk.php';
 
-$client = new KekkaiCurrencySDK([]);
+$client = new KekkaiCurrencySDK([
+    "apikey" => getenv("KEKKAI-CURRENCY_APIKEY"),
+]);
 
 // List all charts
-[$charts, $err] = $client->Chart(null)->list(null, null);
+[$charts, $err] = $client->Chart()->list();
+print_r($charts);
 ```
 
 ### Golang
@@ -137,10 +134,13 @@ $client = new KekkaiCurrencySDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/kekkai-currency-sdk/go"
 
-client := sdk.NewKekkaiCurrencySDK(map[string]any{})
+client := sdk.NewKekkaiCurrencySDK(map[string]any{
+    "apikey": os.Getenv("KEKKAI-CURRENCY_APIKEY"),
+})
 
 // List all charts
 charts, err := client.Chart(nil).List(nil, nil)
+fmt.Println(charts)
 ```
 
 ### Ruby
@@ -148,10 +148,13 @@ charts, err := client.Chart(nil).List(nil, nil)
 ```ruby
 require_relative "KekkaiCurrency_sdk"
 
-client = KekkaiCurrencySDK.new({})
+client = KekkaiCurrencySDK.new({
+  "apikey" => ENV["KEKKAI-CURRENCY_APIKEY"],
+})
 
 # List all charts
-charts, err = client.Chart(nil).list(nil, nil)
+charts, err = client.Chart().list
+puts charts
 ```
 
 ### Lua
@@ -159,10 +162,13 @@ charts, err = client.Chart(nil).list(nil, nil)
 ```lua
 local sdk = require("kekkai-currency_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("KEKKAI-CURRENCY_APIKEY"),
+})
 
 -- List all charts
-local charts, err = client:Chart(nil):list(nil, nil)
+local charts, err = client:Chart():list()
+print(charts)
 ```
 
 ## Unit testing in offline mode
@@ -181,25 +187,21 @@ const result = await client.Chart().load({ id: 'test01' })
 ### Python
 
 ```python
-client = KekkaiCurrencySDK.test(None, None)
-result, err = client.Chart(None).load(
-    {"id": "test01"}, None
-)
+client = KekkaiCurrencySDK.test()
+result, err = client.Chart().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = KekkaiCurrencySDK::test(null, null);
-[$result, $err] = $client->Chart(null)->load(
-    ["id" => "test01"], null
-);
+$client = KekkaiCurrencySDK::test();
+[$result, $err] = $client->Chart()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Chart(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -208,19 +210,15 @@ result, err := client.Chart(nil).Load(
 ### Ruby
 
 ```ruby
-client = KekkaiCurrencySDK.test(nil, nil)
-result, err = client.Chart(nil).load(
-  { "id" => "test01" }, nil
-)
+client = KekkaiCurrencySDK.test
+result, err = client.Chart().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Chart(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Chart():load({ id = "test01" })
 ```
 
 ## How it works
@@ -324,15 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Kekkai Currency API
-
-- Upstream: [https://kekkai.redume.su](https://kekkai.redume.su)
-- API docs: [https://kekkai.redume.su/docs](https://kekkai.redume.su/docs)
-
-- Kekkai is described as free and open-source software.
-- The source code is published at [github.com/redume/kekkai](https://github.com/redume/kekkai); consult the repository for the exact licence text.
-- Public servers are run by independent operators who set their own data-collection and privacy policies.
 
 ---
 

@@ -83,12 +83,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'KEKKAICURRENCY_TEST_CHART_ENTID': {},
     'KEKKAICURRENCY_TEST_LIVE': 'FALSE',
+    'KEKKAICURRENCY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.KEKKAICURRENCY_TEST_LIVE
 
   if (live) {
     const client = new KekkaiCurrencySDK({
+      apikey: env.KEKKAICURRENCY_APIKEY,
     })
 
     let idmap: any = env['KEKKAICURRENCY_TEST_CHART_ENTID']

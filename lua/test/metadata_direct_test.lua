@@ -63,12 +63,14 @@ function metadata_direct_setup(mockres)
   local env = runner.env_override({
     ["KEKKAICURRENCY_TEST_METADATA_ENTID"] = {},
     ["KEKKAICURRENCY_TEST_LIVE"] = "FALSE",
+    ["KEKKAICURRENCY_APIKEY"] = "NONE",
   })
 
   local live = env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["KEKKAICURRENCY_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

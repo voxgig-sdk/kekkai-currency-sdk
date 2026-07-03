@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'KEKKAI_CURRENCY_TEST_CHART_ENTID': idmap,
     'KEKKAI_CURRENCY_TEST_LIVE': 'FALSE',
     'KEKKAI_CURRENCY_TEST_EXPLAIN': 'FALSE',
+    'KEKKAI_CURRENCY_APIKEY': 'NONE',
   })
 
   idmap = env['KEKKAI_CURRENCY_TEST_CHART_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new KekkaiCurrencySDK(merge([
       {
+        apikey: env.KEKKAI_CURRENCY_APIKEY,
       },
       extra
     ]))

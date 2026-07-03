@@ -62,12 +62,14 @@ def chart_direct_setup(mockres)
   env = Runner.env_override({
     "KEKKAICURRENCY_TEST_CHART_ENTID" => {},
     "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
+    "KEKKAICURRENCY_APIKEY" => "NONE",
   })
 
   live = env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["KEKKAICURRENCY_APIKEY"],
     }
     client = KekkaiCurrencySDK.new(merged_opts)
     return {

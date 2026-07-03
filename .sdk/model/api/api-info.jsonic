@@ -25,28 +25,7 @@ main: {
       ]
       title: "Kekkai Currency API"
       version: "1.0.0"
-      tagline: "Collect historical exchange rates for fiat and cryptocurrencies from open sources, with chart-ready output"
-      homepage: "https://kekkai.redume.su"
-      docs_url: "https://kekkai.redume.su/docs"
-      license_short: "Free and open-source (see github.com/redume/kekkai)"
-      license_md: `- Kekkai is described as free and open-source software.
-- The source code is published at [github.com/redume/kekkai](https://github.com/redume/kekkai); consult the repository for the exact licence text.
-- Public servers are run by independent operators who set their own data-collection and privacy policies.`
-      about_md: `[Kekkai](https://kekkai.redume.su) is an open-source service that collects and stores historical currency data from public sources, covering both fiat currencies and cryptocurrencies. The public instance at \`https://api.kekkai.redume.su\` exposes a small HTTP API for querying that history.
-
-What you get from the API:
-
-- Exchange rates for a single date or a date range (\`/api/getRate\`)
-- Chart-ready data series for a custom range or the past week (\`/api/getChart\`, \`/api/getChart/week\`)
-- Metadata about supported currencies and data sources (\`/api/metadata\`)
-
-The API is unauthenticated on the public instance and CORS is enabled on the working endpoints. Because Kekkai is self-hostable, the set of available currencies and the upstream data sources depend on the operator of each instance.`
-      entity_desc: {
-        chart: "Time-series exchange-rate data shaped for plotting, returned by `/api/getChart` for a custom date range and `/api/getChart/week` for the trailing week."
-        currency: "Historical exchange-rate lookups for a single day or a date range via `/api/getRate`, covering both fiat and cryptocurrency pairs."
-        metadata: "Descriptive information about the instance's supported currencies and underlying data sources, exposed via `/api/metadata`."
-      }
-      auth: false
     }
   }
 }
+

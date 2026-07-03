@@ -68,12 +68,14 @@ function metadata_direct_setup($mockres)
     $env = Runner::env_override([
         "KEKKAICURRENCY_TEST_METADATA_ENTID" => [],
         "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
+        "KEKKAICURRENCY_APIKEY" => "NONE",
     ]);
 
     $live = $env["KEKKAICURRENCY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["KEKKAICURRENCY_APIKEY"],
         ];
         $client = new KekkaiCurrencySDK($merged_opts);
         return [

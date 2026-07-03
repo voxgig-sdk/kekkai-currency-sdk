@@ -92,6 +92,7 @@ function metadata_basic_setup(extra)
     ["KEKKAICURRENCY_TEST_METADATA_ENTID"] = idmap,
     ["KEKKAICURRENCY_TEST_LIVE"] = "FALSE",
     ["KEKKAICURRENCY_TEST_EXPLAIN"] = "FALSE",
+    ["KEKKAICURRENCY_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function metadata_basic_setup(extra)
   if env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["KEKKAICURRENCY_APIKEY"],
       },
       extra or {},
     })
