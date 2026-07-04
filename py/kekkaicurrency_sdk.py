@@ -144,16 +144,23 @@ class KekkaiCurrencySDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class KekkaiCurrencySDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,25 +212,58 @@ class KekkaiCurrencySDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def chart(self):
+        """Idiomatic facade: client.chart.list() / client.chart.load({"id": ...})."""
+        from entity.chart_entity import ChartEntity
+        cached = getattr(self, "_chart", None)
+        if cached is None:
+            cached = ChartEntity(self, None)
+            self._chart = cached
+        return cached
 
     def Chart(self, data=None):
+        # Deprecated: use client.chart instead.
         from entity.chart_entity import ChartEntity
         return ChartEntity(self, data)
 
 
+    @property
+    def currency(self):
+        """Idiomatic facade: client.currency.list() / client.currency.load({"id": ...})."""
+        from entity.currency_entity import CurrencyEntity
+        cached = getattr(self, "_currency", None)
+        if cached is None:
+            cached = CurrencyEntity(self, None)
+            self._currency = cached
+        return cached
+
     def Currency(self, data=None):
+        # Deprecated: use client.currency instead.
         from entity.currency_entity import CurrencyEntity
         return CurrencyEntity(self, data)
 
 
+    @property
+    def metadata(self):
+        """Idiomatic facade: client.metadata.list() / client.metadata.load({"id": ...})."""
+        from entity.metadata_entity import MetadataEntity
+        cached = getattr(self, "_metadata", None)
+        if cached is None:
+            cached = MetadataEntity(self, None)
+            self._metadata = cached
+        return cached
+
     def Metadata(self, data=None):
+        # Deprecated: use client.metadata instead.
         from entity.metadata_entity import MetadataEntity
         return MetadataEntity(self, data)
 

@@ -245,16 +245,25 @@ func (sdk *KekkaiCurrencySDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// Chart returns a Chart entity bound to this client.
+// Idiomatic usage: client.Chart(nil).List(nil, nil) or
+// client.Chart(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KekkaiCurrencySDK) Chart(data map[string]any) KekkaiCurrencyEntity {
 	return NewChartEntityFunc(sdk, data)
 }
 
 
+// Currency returns a Currency entity bound to this client.
+// Idiomatic usage: client.Currency(nil).List(nil, nil) or
+// client.Currency(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KekkaiCurrencySDK) Currency(data map[string]any) KekkaiCurrencyEntity {
 	return NewCurrencyEntityFunc(sdk, data)
 }
 
 
+// Metadata returns a Metadata entity bound to this client.
+// Idiomatic usage: client.Metadata(nil).List(nil, nil) or
+// client.Metadata(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *KekkaiCurrencySDK) Metadata(data map[string]any) KekkaiCurrencyEntity {
 	return NewMetadataEntityFunc(sdk, data)
 }

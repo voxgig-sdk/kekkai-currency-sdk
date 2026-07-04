@@ -85,6 +85,27 @@ func (e *MetadataEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Metadata; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *MetadataEntity) DataTyped(data ...Metadata) Metadata {
+	if len(data) > 0 {
+		return typedFrom[Metadata](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Metadata](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Metadata (all fields
+// optional at the wire level).
+func (e *MetadataEntity) MatchTyped(match ...Metadata) Metadata {
+	if len(match) > 0 {
+		return typedFrom[Metadata](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Metadata](e.Match())
+}
+
 func (e *MetadataEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *MetadataEntity) List(reqmatch map[string]any, ctrl map[string]any) (any
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// MetadataListMatch and returns []Metadata. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *MetadataEntity) ListTyped(reqmatch MetadataListMatch, ctrl map[string]any) ([]Metadata, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Metadata](res), nil
 }
 
 

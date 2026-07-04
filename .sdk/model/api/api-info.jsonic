@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "Kekkai API Support"
         url: "https://kekkai-docs.redume.su"

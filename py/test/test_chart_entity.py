@@ -50,8 +50,7 @@ class TestChartEntity:
         chart_ref01_ent = client.Chart(None)
         chart_ref01_match = {}
 
-        chart_ref01_list_result, err = chart_ref01_ent.list(chart_ref01_match, None)
-        assert err is None
+        chart_ref01_list_result = chart_ref01_ent.list(chart_ref01_match, None)
         assert isinstance(chart_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _chart_basic_setup(extra):
         "KEKKAICURRENCY_TEST_CHART_ENTID": idmap,
         "KEKKAICURRENCY_TEST_LIVE": "FALSE",
         "KEKKAICURRENCY_TEST_EXPLAIN": "FALSE",
-        "KEKKAICURRENCY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _chart_basic_setup(extra):
     if env.get("KEKKAICURRENCY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("KEKKAICURRENCY_APIKEY"),
             },
             extra or {},
         ])

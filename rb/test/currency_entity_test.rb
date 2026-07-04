@@ -42,8 +42,7 @@ class CurrencyEntityTest < Minitest::Test
     # LOAD
     currency_ref01_ent = client.Currency(nil)
     currency_ref01_match_dt0 = {}
-    currency_ref01_data_dt0_loaded, err = currency_ref01_ent.load(currency_ref01_match_dt0, nil)
-    assert_nil err
+    currency_ref01_data_dt0_loaded = currency_ref01_ent.load(currency_ref01_match_dt0, nil)
     assert !currency_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def currency_basic_setup(extra)
     "KEKKAICURRENCY_TEST_CURRENCY_ENTID" => idmap,
     "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
     "KEKKAICURRENCY_TEST_EXPLAIN" => "FALSE",
-    "KEKKAICURRENCY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def currency_basic_setup(extra)
   if env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["KEKKAICURRENCY_APIKEY"],
       },
       extra || {},
     ])

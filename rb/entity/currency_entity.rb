@@ -45,6 +45,7 @@ class CurrencyEntity
     end
   end
 
+  # @return [Currency, Hash] the current Currency data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class CurrencyEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Currency fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Currency.
+  #
+  # @param reqmatch [CurrencyLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Currency, Hash] the loaded Currency; raises KekkaiCurrencyError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

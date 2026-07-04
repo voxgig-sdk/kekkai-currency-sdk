@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CurrencyLoadMatch
+---@param ctrl? table
+---@return Currency
+---@return string? err
 function CurrencyEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

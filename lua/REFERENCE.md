@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## ChartEntity
 
 ```lua
-local chart = client:Chart(nil)
+local chart = client:chart(nil)
 ```
 
 ### Fields
@@ -109,7 +108,7 @@ local chart = client:Chart(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Chart():list()
+local results, err = client:chart():list()
 ```
 
 ### Common Methods
@@ -145,7 +144,7 @@ Return the entity name.
 ## CurrencyEntity
 
 ```lua
-local currency = client:Currency(nil)
+local currency = client:currency(nil)
 ```
 
 ### Fields
@@ -164,7 +163,7 @@ local currency = client:Currency(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Currency():load({ id = "currency_id" })
+local result, err = client:currency():load({ id = "currency_id" })
 ```
 
 ### Common Methods
@@ -200,7 +199,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```lua
-local metadata = client:Metadata(nil)
+local metadata = client:metadata(nil)
 ```
 
 ### Fields
@@ -220,7 +219,7 @@ local metadata = client:Metadata(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Metadata():list()
+local results, err = client:metadata():list()
 ```
 
 ### Common Methods

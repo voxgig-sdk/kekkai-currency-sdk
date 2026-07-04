@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:chart():list() / client:chart():load({ id = ... })
+function KekkaiCurrencySDK:chart(data)
+  local EntityMod = require("entity.chart_entity")
+  if data == nil then
+    if self._chart == nil then
+      self._chart = EntityMod.new(self, nil)
+    end
+    return self._chart
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:chart() instead.
 function KekkaiCurrencySDK:Chart(data)
   local EntityMod = require("entity.chart_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:currency():list() / client:currency():load({ id = ... })
+function KekkaiCurrencySDK:currency(data)
+  local EntityMod = require("entity.currency_entity")
+  if data == nil then
+    if self._currency == nil then
+      self._currency = EntityMod.new(self, nil)
+    end
+    return self._currency
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:currency() instead.
 function KekkaiCurrencySDK:Currency(data)
   local EntityMod = require("entity.currency_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:metadata():list() / client:metadata():load({ id = ... })
+function KekkaiCurrencySDK:metadata(data)
+  local EntityMod = require("entity.metadata_entity")
+  if data == nil then
+    if self._metadata == nil then
+      self._metadata = EntityMod.new(self, nil)
+    end
+    return self._metadata
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:metadata() instead.
 function KekkaiCurrencySDK:Metadata(data)
   local EntityMod = require("entity.metadata_entity")
   return EntityMod.new(self, data)

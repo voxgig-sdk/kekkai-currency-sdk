@@ -15,9 +15,6 @@ module KekkaiCurrencyConfig
       },
       "options" => {
         "base" => "https://api.kekkai.redume.su",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

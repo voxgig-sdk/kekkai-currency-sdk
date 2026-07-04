@@ -4,6 +4,8 @@ import { ChartEntity } from './entity/ChartEntity'
 import { CurrencyEntity } from './entity/CurrencyEntity'
 import { MetadataEntity } from './entity/MetadataEntity'
 
+export type * from './KekkaiCurrencyTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class KekkaiCurrencySDK {
 
 
 
+  _chart?: ChartEntity
+
+  // Idiomatic facade: `client.chart.list()` / `client.chart.load({ id })`.
+  get chart(): ChartEntity {
+    return (this._chart ??= new ChartEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.chart` instead. */
   Chart(data?: any) {
     const self = this
     return new ChartEntity(self,data)
   }
 
 
+  _currency?: CurrencyEntity
+
+  // Idiomatic facade: `client.currency.list()` / `client.currency.load({ id })`.
+  get currency(): CurrencyEntity {
+    return (this._currency ??= new CurrencyEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.currency` instead. */
   Currency(data?: any) {
     const self = this
     return new CurrencyEntity(self,data)
   }
 
 
+  _metadata?: MetadataEntity
+
+  // Idiomatic facade: `client.metadata.list()` / `client.metadata.load({ id })`.
+  get metadata(): MetadataEntity {
+    return (this._metadata ??= new MetadataEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.metadata` instead. */
   Metadata(data?: any) {
     const self = this
     return new MetadataEntity(self,data)

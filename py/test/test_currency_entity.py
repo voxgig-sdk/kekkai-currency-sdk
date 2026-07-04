@@ -49,8 +49,7 @@ class TestCurrencyEntity:
         # LOAD
         currency_ref01_ent = client.Currency(None)
         currency_ref01_match_dt0 = {}
-        currency_ref01_data_dt0_loaded, err = currency_ref01_ent.load(currency_ref01_match_dt0, None)
-        assert err is None
+        currency_ref01_data_dt0_loaded = currency_ref01_ent.load(currency_ref01_match_dt0, None)
         assert currency_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _currency_basic_setup(extra):
         "KEKKAICURRENCY_TEST_CURRENCY_ENTID": idmap,
         "KEKKAICURRENCY_TEST_LIVE": "FALSE",
         "KEKKAICURRENCY_TEST_EXPLAIN": "FALSE",
-        "KEKKAICURRENCY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _currency_basic_setup(extra):
     if env.get("KEKKAICURRENCY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("KEKKAICURRENCY_APIKEY"),
             },
             extra or {},
         ])

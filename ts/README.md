@@ -9,9 +9,12 @@ The TypeScript SDK for the KekkaiCurrency API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/kekkai-currency
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/kekkai-currency-sdk/releases](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { KekkaiCurrencySDK } from 'kekkai-currency'
+import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
 
-const client = new KekkaiCurrencySDK({
-  apikey: process.env.KEKKAI-CURRENCY_APIKEY,
-})
+const client = new KekkaiCurrencySDK()
 ```
 
 ### 2. List charts
 
 ```ts
-const result = await client.Chart().list()
+const result = await client.chart.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KekkaiCurrencySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.chart.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new KekkaiCurrencySDK({ apikey: '...' })
+const client = new KekkaiCurrencySDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.chart
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new KekkaiCurrencySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new KekkaiCurrencySDK({
 Create a `.env.local` file at the project root:
 
 ```
-KEKKAI-CURRENCY_TEST_LIVE=TRUE
-KEKKAI-CURRENCY_APIKEY=<your-key>
+KEKKAI_CURRENCY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new KekkaiCurrencySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new KekkaiCurrencySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -298,7 +295,7 @@ API path: `/api/metadata`
 
 ### Chart
 
-Create an instance: `const chart = client.Chart()`
+Create an instance: `const chart = client.chart`
 
 #### Operations
 
@@ -316,13 +313,13 @@ Create an instance: `const chart = client.Chart()`
 #### Example: List
 
 ```ts
-const charts = await client.Chart().list()
+const charts = await client.chart.list()
 ```
 
 
 ### Currency
 
-Create an instance: `const currency = client.Currency()`
+Create an instance: `const currency = client.currency`
 
 #### Operations
 
@@ -342,13 +339,13 @@ Create an instance: `const currency = client.Currency()`
 #### Example: Load
 
 ```ts
-const currency = await client.Currency().load({ id: 'currency_id' })
+const currency = await client.currency.load({ id: 'currency_id' })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.Metadata()`
+Create an instance: `const metadata = client.metadata`
 
 #### Operations
 
@@ -369,7 +366,7 @@ Create an instance: `const metadata = client.Metadata()`
 #### Example: List
 
 ```ts
-const metadatas = await client.Metadata().list()
+const metadatas = await client.metadata.list()
 ```
 
 
@@ -430,7 +427,7 @@ kekkai-currency/
 Import the SDK from the package root:
 
 ```ts
-import { KekkaiCurrencySDK } from 'kekkai-currency'
+import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
 ```
 
 ### Entity state
@@ -440,11 +437,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const chart = client.chart
+await chart.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// chart.data() now returns the loaded chart data
+// chart.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

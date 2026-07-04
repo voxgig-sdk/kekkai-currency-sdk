@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `KekkaiCurrencySDK.test()`.
 ## ChartEntity
 
 ```ts
-const chart = client.Chart()
+const chart = client.chart
 ```
 
 ### Fields
@@ -151,7 +150,7 @@ const chart = client.Chart()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Chart().list()
+const results = await client.chart.list()
 ```
 
 ### Common Methods
@@ -185,7 +184,7 @@ Return a copy of the entity options.
 ## CurrencyEntity
 
 ```ts
-const currency = client.Currency()
+const currency = client.currency
 ```
 
 ### Fields
@@ -204,7 +203,7 @@ const currency = client.Currency()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Currency().load({ id: 'currency_id' })
+const result = await client.currency.load({ id: 'currency_id' })
 ```
 
 ### Common Methods
@@ -238,7 +237,7 @@ Return a copy of the entity options.
 ## MetadataEntity
 
 ```ts
-const metadata = client.Metadata()
+const metadata = client.metadata
 ```
 
 ### Fields
@@ -258,7 +257,7 @@ const metadata = client.Metadata()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Metadata().list()
+const results = await client.metadata.list()
 ```
 
 ### Common Methods
