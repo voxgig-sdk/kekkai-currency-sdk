@@ -31,17 +31,17 @@ local sdk = require("kekkai-currency_sdk")
 local client = sdk.new()
 ```
 
-### 2. List charts
+### 2. List chart records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:chart():list()
+local charts, err = client:Chart():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(charts) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:chart():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Chart():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -191,17 +191,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local chart, err = client:Chart():load({ id = "example_id" })
+    if err then error(err) end
+    -- chart is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -250,7 +255,7 @@ API path: `/api/metadata`
 
 ### Chart
 
-Create an instance: `const chart = client.chart`
+Create an instance: `local chart = client:Chart(nil)`
 
 #### Operations
 
@@ -267,14 +272,14 @@ Create an instance: `const chart = client.chart`
 
 #### Example: List
 
-```ts
-const charts = await client.chart.list()
+```lua
+local charts, err = client:Chart():list()
 ```
 
 
 ### Currency
 
-Create an instance: `const currency = client.currency`
+Create an instance: `local currency = client:Currency(nil)`
 
 #### Operations
 
@@ -293,14 +298,14 @@ Create an instance: `const currency = client.currency`
 
 #### Example: Load
 
-```ts
-const currency = await client.currency.load({ id: 'currency_id' })
+```lua
+local currency, err = client:Currency():load({ id = "currency_id" })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.metadata`
+Create an instance: `local metadata = client:Metadata(nil)`
 
 #### Operations
 
@@ -320,8 +325,8 @@ Create an instance: `const metadata = client.metadata`
 
 #### Example: List
 
-```ts
-const metadatas = await client.metadata.list()
+```lua
+local metadatas, err = client:Metadata():list()
 ```
 
 
@@ -396,7 +401,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local chart = client:chart()
+local chart = client:Chart()
 chart:load({ id = "example_id" })
 
 -- chart:data_get() now returns the loaded chart data

@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## ChartEntity
 
 ```lua
-local chart = client:chart(nil)
+local chart = client:Chart(nil)
 ```
 
 ### Fields
@@ -108,7 +108,7 @@ local chart = client:chart(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:chart():list()
+local results, err = client:Chart():list()
 ```
 
 ### Common Methods
@@ -144,7 +144,7 @@ Return the entity name.
 ## CurrencyEntity
 
 ```lua
-local currency = client:currency(nil)
+local currency = client:Currency(nil)
 ```
 
 ### Fields
@@ -163,7 +163,7 @@ local currency = client:currency(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:currency():load({ id = "currency_id" })
+local result, err = client:Currency():load({ id = "currency_id" })
 ```
 
 ### Common Methods
@@ -199,7 +199,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```lua
-local metadata = client:metadata(nil)
+local metadata = client:Metadata(nil)
 ```
 
 ### Fields
@@ -219,7 +219,7 @@ local metadata = client:metadata(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:metadata():list()
+local results, err = client:Metadata():list()
 ```
 
 ### Common Methods

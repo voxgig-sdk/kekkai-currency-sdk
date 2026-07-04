@@ -133,7 +133,7 @@ Alias for `KekkaiCurrencySDK.test()`.
 ## ChartEntity
 
 ```ts
-const chart = client.chart
+const chart = client.Chart()
 ```
 
 ### Fields
@@ -150,7 +150,7 @@ const chart = client.chart
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.chart.list()
+const results = await client.Chart().list()
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ Return a copy of the entity options.
 ## CurrencyEntity
 
 ```ts
-const currency = client.currency
+const currency = client.Currency()
 ```
 
 ### Fields
@@ -203,7 +203,7 @@ const currency = client.currency
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.currency.load({ id: 'currency_id' })
+const result = await client.Currency().load({ id: 'currency_id' })
 ```
 
 ### Common Methods
@@ -237,7 +237,7 @@ Return a copy of the entity options.
 ## MetadataEntity
 
 ```ts
-const metadata = client.metadata
+const metadata = client.Metadata()
 ```
 
 ### Fields
@@ -257,7 +257,7 @@ const metadata = client.metadata
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.metadata.list()
+const results = await client.Metadata().list()
 ```
 
 ### Common Methods

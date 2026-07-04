@@ -233,10 +233,10 @@ class KekkaiCurrencySDK
 
     private $_chart = null;
 
-    // Idiomatic facade: $client->chart()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Chart() (PHP method
-    // names are case-insensitive).
-    public function chart($data = null)
+    // Canonical facade: $client->Chart()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->chart()
+    // resolves here too.
+    public function Chart($data = null)
     {
         require_once __DIR__ . '/entity/chart_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class KekkaiCurrencySDK
 
     private $_currency = null;
 
-    // Idiomatic facade: $client->currency()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Currency() (PHP method
-    // names are case-insensitive).
-    public function currency($data = null)
+    // Canonical facade: $client->Currency()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->currency()
+    // resolves here too.
+    public function Currency($data = null)
     {
         require_once __DIR__ . '/entity/currency_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class KekkaiCurrencySDK
 
     private $_metadata = null;
 
-    // Idiomatic facade: $client->metadata()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Metadata() (PHP method
-    // names are case-insensitive).
-    public function metadata($data = null)
+    // Canonical facade: $client->Metadata()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->metadata()
+    // resolves here too.
+    public function Metadata($data = null)
     {
         require_once __DIR__ . '/entity/metadata_entity.php';
         if ($data === null) {

@@ -29,18 +29,16 @@ require_once 'kekkaicurrency_sdk.php';
 $client = new KekkaiCurrencySDK();
 ```
 
-### 2. List charts
+### 2. List chart records
 
 ```php
 try {
-    $result = $client->chart()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Chart records — iterate directly.
+    $charts = $client->Chart()->list();
+    foreach ($charts as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = KekkaiCurrencySDK::test();
+$client = KekkaiCurrencySDK::test([
+    "entity" => ["chart" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->chart()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$chart = $client->Chart()->load(["id" => "test01"]);
+print_r($chart);
 ```
 
 ### Use a custom fetch function
@@ -258,7 +260,7 @@ API path: `/api/metadata`
 
 ### Chart
 
-Create an instance: `const chart = client.chart`
+Create an instance: `$chart = $client->Chart();`
 
 #### Operations
 
@@ -275,14 +277,15 @@ Create an instance: `const chart = client.chart`
 
 #### Example: List
 
-```ts
-const charts = await client.chart.list()
+```php
+// list() returns an array of Chart records (throws on error).
+$charts = $client->Chart()->list();
 ```
 
 
 ### Currency
 
-Create an instance: `const currency = client.currency`
+Create an instance: `$currency = $client->Currency();`
 
 #### Operations
 
@@ -301,14 +304,15 @@ Create an instance: `const currency = client.currency`
 
 #### Example: Load
 
-```ts
-const currency = await client.currency.load({ id: 'currency_id' })
+```php
+// load() returns the bare Currency record (throws on error).
+$currency = $client->Currency()->load(["id" => "currency_id"]);
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.metadata`
+Create an instance: `$metadata = $client->Metadata();`
 
 #### Operations
 
@@ -328,8 +332,9 @@ Create an instance: `const metadata = client.metadata`
 
 #### Example: List
 
-```ts
-const metadatas = await client.metadata.list()
+```php
+// list() returns an array of Metadata records (throws on error).
+$metadatas = $client->Metadata()->list();
 ```
 
 
@@ -404,7 +409,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$chart = $client->chart();
+$chart = $client->Chart();
 $chart->load(["id" => "example_id"]);
 
 // $chart->dataGet() now returns the loaded chart data

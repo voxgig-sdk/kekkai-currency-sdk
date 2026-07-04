@@ -208,39 +208,21 @@ class KekkaiCurrencySDK
   end
 
 
-  # Idiomatic facade: client.chart.list / client.chart.load({ "id" => ... })
-  def chart
-    require_relative 'entity/chart_entity'
-    @chart ||= ChartEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.chart instead.
+  # Canonical facade: client.Chart.list / client.Chart.load({ "id" => ... })
   def Chart(data = nil)
     require_relative 'entity/chart_entity'
     ChartEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.currency.list / client.currency.load({ "id" => ... })
-  def currency
-    require_relative 'entity/currency_entity'
-    @currency ||= CurrencyEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.currency instead.
+  # Canonical facade: client.Currency.list / client.Currency.load({ "id" => ... })
   def Currency(data = nil)
     require_relative 'entity/currency_entity'
     CurrencyEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.metadata.list / client.metadata.load({ "id" => ... })
-  def metadata
-    require_relative 'entity/metadata_entity'
-    @metadata ||= MetadataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.metadata instead.
+  # Canonical facade: client.Metadata.list / client.Metadata.load({ "id" => ... })
   def Metadata(data = nil)
     require_relative 'entity/metadata_entity'
     MetadataEntity.new(self, data)

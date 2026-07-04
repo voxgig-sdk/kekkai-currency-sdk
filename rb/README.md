@@ -28,16 +28,14 @@ require_relative "KekkaiCurrency_sdk"
 client = KekkaiCurrencySDK.new
 ```
 
-### 2. List charts
+### 2. List chart records
 
 ```ruby
 begin
-  result = client.chart.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Chart records — iterate directly.
+  charts = client.Chart.list
+  charts.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = KekkaiCurrencySDK.test
+client = KekkaiCurrencySDK.test({
+  "entity" => { "chart" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.chart.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+chart = client.Chart.load({ "id" => "test01" })
+puts chart
 ```
 
 ### Use a custom fetch function
@@ -253,7 +255,7 @@ API path: `/api/metadata`
 
 ### Chart
 
-Create an instance: `const chart = client.chart`
+Create an instance: `chart = client.Chart`
 
 #### Operations
 
@@ -270,14 +272,15 @@ Create an instance: `const chart = client.chart`
 
 #### Example: List
 
-```ts
-const charts = await client.chart.list()
+```ruby
+# list returns an Array of Chart records (raises on error).
+charts = client.Chart.list
 ```
 
 
 ### Currency
 
-Create an instance: `const currency = client.currency`
+Create an instance: `currency = client.Currency`
 
 #### Operations
 
@@ -296,14 +299,15 @@ Create an instance: `const currency = client.currency`
 
 #### Example: Load
 
-```ts
-const currency = await client.currency.load({ id: 'currency_id' })
+```ruby
+# load returns the bare Currency record (raises on error).
+currency = client.Currency.load({ "id" => "currency_id" })
 ```
 
 
 ### Metadata
 
-Create an instance: `const metadata = client.metadata`
+Create an instance: `metadata = client.Metadata`
 
 #### Operations
 
@@ -323,8 +327,9 @@ Create an instance: `const metadata = client.metadata`
 
 #### Example: List
 
-```ts
-const metadatas = await client.metadata.list()
+```ruby
+# list returns an Array of Metadata records (raises on error).
+metadatas = client.Metadata.list
 ```
 
 
@@ -399,7 +404,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-chart = client.chart
+chart = client.Chart
 chart.load({ "id" => "example_id" })
 
 # chart.data_get now returns the loaded chart data

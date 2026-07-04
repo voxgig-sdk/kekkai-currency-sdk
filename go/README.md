@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/kekkai-currency-sdk/go=../kekkai-curr
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/kekkai-currency-sdk/go"
-    "github.com/voxgig-sdk/kekkai-currency-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List charts
-
-```go
-    result, err := client.Chart(nil).List(nil, nil)
+    // List chart records — the value is the array of records itself.
+    charts, err := client.Chart(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range charts.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Chart(nil).Load(
+chart, err := client.Chart(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(chart) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -212,17 +211,24 @@ All entities implement the `KekkaiCurrencyEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    chart, err := client.Chart(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // chart is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -289,7 +295,11 @@ Create an instance: `chart := client.Chart(nil)`
 #### Example: List
 
 ```go
-results, err := client.Chart(nil).List(nil, nil)
+charts, err := client.Chart(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(charts) // the array of records
 ```
 
 
@@ -315,7 +325,11 @@ Create an instance: `currency := client.Currency(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Currency(nil).Load(map[string]any{"id": "currency_id"}, nil)
+currency, err := client.Currency(nil).Load(map[string]any{"id": "currency_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(currency) // the loaded record
 ```
 
 
@@ -342,7 +356,11 @@ Create an instance: `metadata := client.Metadata(nil)`
 #### Example: List
 
 ```go
-results, err := client.Metadata(nil).List(nil, nil)
+metadatas, err := client.Metadata(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(metadatas) // the array of records
 ```
 
 

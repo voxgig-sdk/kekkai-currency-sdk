@@ -220,57 +220,27 @@ class KekkaiCurrencySDK:
         }
 
 
-    @property
-    def chart(self):
-        """Idiomatic facade: client.chart.list() / client.chart.load({"id": ...})."""
-        from entity.chart_entity import ChartEntity
-        cached = getattr(self, "_chart", None)
-        if cached is None:
-            cached = ChartEntity(self, None)
-            self._chart = cached
-        return cached
-
-    def Chart(self, data=None):
-        # Deprecated: use client.chart instead.
+    def Chart(self, data=None) -> "ChartEntity":
+        """Entity factory: client.Chart().list({}) / client.Chart().load({"id": ...})."""
         from entity.chart_entity import ChartEntity
         return ChartEntity(self, data)
 
 
-    @property
-    def currency(self):
-        """Idiomatic facade: client.currency.list() / client.currency.load({"id": ...})."""
-        from entity.currency_entity import CurrencyEntity
-        cached = getattr(self, "_currency", None)
-        if cached is None:
-            cached = CurrencyEntity(self, None)
-            self._currency = cached
-        return cached
-
-    def Currency(self, data=None):
-        # Deprecated: use client.currency instead.
+    def Currency(self, data=None) -> "CurrencyEntity":
+        """Entity factory: client.Currency().list({}) / client.Currency().load({"id": ...})."""
         from entity.currency_entity import CurrencyEntity
         return CurrencyEntity(self, data)
 
 
-    @property
-    def metadata(self):
-        """Idiomatic facade: client.metadata.list() / client.metadata.load({"id": ...})."""
-        from entity.metadata_entity import MetadataEntity
-        cached = getattr(self, "_metadata", None)
-        if cached is None:
-            cached = MetadataEntity(self, None)
-            self._metadata = cached
-        return cached
-
-    def Metadata(self, data=None):
-        # Deprecated: use client.metadata instead.
+    def Metadata(self, data=None) -> "MetadataEntity":
+        """Entity factory: client.Metadata().list({}) / client.Metadata().load({"id": ...})."""
         from entity.metadata_entity import MetadataEntity
         return MetadataEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "KekkaiCurrencySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class KekkaiCurrencySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.chart_entity import ChartEntity
+    from entity.currency_entity import CurrencyEntity
+    from entity.metadata_entity import MetadataEntity

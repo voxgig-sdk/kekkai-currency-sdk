@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## ChartEntity
 
 ```python
-chart = client.chart
+chart = client.Chart()
 ```
 
 ### Fields
@@ -105,7 +105,9 @@ chart = client.chart
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.chart.list({})
+results = client.Chart().list({})
+for chart in results:
+    print(chart)
 ```
 
 ### Common Methods
@@ -140,7 +142,7 @@ Return the entity name.
 ## CurrencyEntity
 
 ```python
-currency = client.currency
+currency = client.Currency()
 ```
 
 ### Fields
@@ -159,7 +161,7 @@ currency = client.currency
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.currency.load({"id": "currency_id"})
+result = client.Currency().load({"id": "currency_id"})
 ```
 
 ### Common Methods
@@ -194,7 +196,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```python
-metadata = client.metadata
+metadata = client.Metadata()
 ```
 
 ### Fields
@@ -214,7 +216,9 @@ metadata = client.metadata
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.metadata.list({})
+results = client.Metadata().list({})
+for metadata in results:
+    print(metadata)
 ```
 
 ### Common Methods

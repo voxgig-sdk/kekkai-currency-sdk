@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## ChartEntity
 
 ```ruby
-chart = client.chart
+chart = client.Chart
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ chart = client.chart
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.chart.list(nil)
+results = client.Chart.list(nil)
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## CurrencyEntity
 
 ```ruby
-currency = client.currency
+currency = client.Currency
 ```
 
 ### Fields
@@ -166,7 +166,7 @@ currency = client.currency
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.currency.load({ "id" => "currency_id" })
+result = client.Currency.load({ "id" => "currency_id" })
 ```
 
 ### Common Methods
@@ -202,7 +202,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```ruby
-metadata = client.metadata
+metadata = client.Metadata
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ metadata = client.metadata
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.metadata.list(nil)
+results = client.Metadata.list(nil)
 ```
 
 ### Common Methods

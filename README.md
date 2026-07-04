@@ -26,9 +26,11 @@ import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
 
 const client = new KekkaiCurrencySDK()
 
-// List all charts
-const charts = await client.chart.list()
-console.log(charts.data)
+// List all charts (returns Chart[])
+const charts = await client.Chart().list()
+for (const chart of charts) {
+  console.log(chart)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from kekkaicurrency_sdk import KekkaiCurrencySDK
 
 client = KekkaiCurrencySDK()
 
-# List all charts
-charts = client.chart.list()
-print(charts)
+# List all charts (returns a list, raises on error)
+charts = client.Chart().list({})
+for chart in charts:
+    print(chart)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'kekkaicurrency_sdk.php';
 
 $client = new KekkaiCurrencySDK();
 
-// List all charts (throws on error)
-$charts = $client->chart()->list();
+// List all charts (returns an array; throws on error)
+$charts = $client->Chart()->list();
 print_r($charts);
 ```
 
@@ -122,8 +125,8 @@ require_relative "KekkaiCurrency_sdk"
 
 client = KekkaiCurrencySDK.new
 
-# List all charts
-charts = client.chart.list
+# List all charts (returns an Array; raises on error)
+charts = client.Chart.list
 puts charts
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("kekkai-currency_sdk")
 local client = sdk.new()
 
 -- List all charts
-local charts, err = client:chart():list()
+local charts, err = client:Chart():list()
 print(charts)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = KekkaiCurrencySDK.test()
-const result = await client.chart.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const chart = await client.Chart().load({ id: 'test01' })
+// chart is a bare Chart populated with mock data
+console.log(chart)
 ```
 
 ### Python
 
 ```python
 client = KekkaiCurrencySDK.test()
-result = client.chart.load({"id": "test01"})
+chart = client.Chart().load({"id": "test01"})
+print(chart)
 ```
 
 ### PHP
 
 ```php
-$client = KekkaiCurrencySDK::test();
-$result = $client->chart()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = KekkaiCurrencySDK::test([
+    "entity" => ["chart" => ["test01" => ["id" => "test01"]]],
+]);
+$chart = $client->Chart()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.Chart(nil).Load(
 ### Ruby
 
 ```ruby
-client = KekkaiCurrencySDK.test
-result = client.chart.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = KekkaiCurrencySDK.test({
+  "entity" => { "chart" => { "test01" => { "id" => "test01" } } },
+})
+chart = client.Chart.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:chart():load({ id = "test01" })
+local result, err = client:Chart():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ChartEntity
 
 ```php
-$chart = $client->chart();
+$chart = $client->Chart();
 ```
 
 ### Fields
@@ -110,7 +110,7 @@ $chart = $client->chart();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->chart()->list([]);
+$results = $client->Chart()->list([]);
 ```
 
 ### Common Methods
@@ -146,7 +146,7 @@ Return the entity name.
 ## CurrencyEntity
 
 ```php
-$currency = $client->currency();
+$currency = $client->Currency();
 ```
 
 ### Fields
@@ -165,7 +165,7 @@ $currency = $client->currency();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->currency()->load(["id" => "currency_id"]);
+$result = $client->Currency()->load(["id" => "currency_id"]);
 ```
 
 ### Common Methods
@@ -201,7 +201,7 @@ Return the entity name.
 ## MetadataEntity
 
 ```php
-$metadata = $client->metadata();
+$metadata = $client->Metadata();
 ```
 
 ### Fields
@@ -221,7 +221,7 @@ $metadata = $client->metadata();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->metadata()->list([]);
+$results = $client->Metadata()->list([]);
 ```
 
 ### Common Methods

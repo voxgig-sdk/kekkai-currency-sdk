@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:chart():list() / client:chart():load({ id = ... })
-function KekkaiCurrencySDK:chart(data)
+-- Idiomatic facade: client:Chart():list() / client:Chart():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KekkaiCurrencySDK:Chart(data)
   local EntityMod = require("entity.chart_entity")
   if data == nil then
     if self._chart == nil then
@@ -256,15 +257,10 @@ function KekkaiCurrencySDK:chart(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:chart() instead.
-function KekkaiCurrencySDK:Chart(data)
-  local EntityMod = require("entity.chart_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:currency():list() / client:currency():load({ id = ... })
-function KekkaiCurrencySDK:currency(data)
+-- Idiomatic facade: client:Currency():list() / client:Currency():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KekkaiCurrencySDK:Currency(data)
   local EntityMod = require("entity.currency_entity")
   if data == nil then
     if self._currency == nil then
@@ -275,15 +271,10 @@ function KekkaiCurrencySDK:currency(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:currency() instead.
-function KekkaiCurrencySDK:Currency(data)
-  local EntityMod = require("entity.currency_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:metadata():list() / client:metadata():load({ id = ... })
-function KekkaiCurrencySDK:metadata(data)
+-- Idiomatic facade: client:Metadata():list() / client:Metadata():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function KekkaiCurrencySDK:Metadata(data)
   local EntityMod = require("entity.metadata_entity")
   if data == nil then
     if self._metadata == nil then
@@ -291,12 +282,6 @@ function KekkaiCurrencySDK:metadata(data)
     end
     return self._metadata
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:metadata() instead.
-function KekkaiCurrencySDK:Metadata(data)
-  local EntityMod = require("entity.metadata_entity")
   return EntityMod.new(self, data)
 end
 

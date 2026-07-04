@@ -206,42 +206,21 @@ class KekkaiCurrencySDK {
 
 
 
-  _chart?: ChartEntity
-
-  // Idiomatic facade: `client.chart.list()` / `client.chart.load({ id })`.
-  get chart(): ChartEntity {
-    return (this._chart ??= new ChartEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.chart` instead. */
+  // Entity access: `client.Chart().list()` / `client.Chart().load({ id })`.
   Chart(data?: any) {
     const self = this
     return new ChartEntity(self,data)
   }
 
 
-  _currency?: CurrencyEntity
-
-  // Idiomatic facade: `client.currency.list()` / `client.currency.load({ id })`.
-  get currency(): CurrencyEntity {
-    return (this._currency ??= new CurrencyEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.currency` instead. */
+  // Entity access: `client.Currency().list()` / `client.Currency().load({ id })`.
   Currency(data?: any) {
     const self = this
     return new CurrencyEntity(self,data)
   }
 
 
-  _metadata?: MetadataEntity
-
-  // Idiomatic facade: `client.metadata.list()` / `client.metadata.load({ id })`.
-  get metadata(): MetadataEntity {
-    return (this._metadata ??= new MetadataEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.metadata` instead. */
+  // Entity access: `client.Metadata().list()` / `client.Metadata().load({ id })`.
   Metadata(data?: any) {
     const self = this
     return new MetadataEntity(self,data)
