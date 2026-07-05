@@ -14,8 +14,7 @@ type Chart struct {
 	Rate *float64 `json:"rate,omitempty"`
 }
 
-// ChartListMatch mirrors the chart fields as an all-optional match
-// filter (Go analog of Partial<Chart>).
+// ChartListMatch is the typed request payload for Chart.ListTyped.
 type ChartListMatch struct {
 	Date *string `json:"date,omitempty"`
 	Rate *float64 `json:"rate,omitempty"`
@@ -29,8 +28,7 @@ type Currency struct {
 	To *string `json:"to,omitempty"`
 }
 
-// CurrencyLoadMatch mirrors the currency fields as an all-optional match
-// filter (Go analog of Partial<Currency>).
+// CurrencyLoadMatch is the typed request payload for Currency.LoadTyped.
 type CurrencyLoadMatch struct {
 	Date *string `json:"date,omitempty"`
 	From *string `json:"from,omitempty"`
@@ -47,8 +45,7 @@ type Metadata struct {
 	Version *string `json:"version,omitempty"`
 }
 
-// MetadataListMatch mirrors the metadata fields as an all-optional match
-// filter (Go analog of Partial<Metadata>).
+// MetadataListMatch is the typed request payload for Metadata.ListTyped.
 type MetadataListMatch struct {
 	DataSource *[]any `json:"data_source,omitempty"`
 	LastUpdate *string `json:"last_update,omitempty"`

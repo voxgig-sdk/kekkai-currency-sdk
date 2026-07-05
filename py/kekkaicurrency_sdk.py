@@ -221,19 +221,19 @@ class KekkaiCurrencySDK:
 
 
     def Chart(self, data=None) -> "ChartEntity":
-        """Entity factory: client.Chart().list({}) / client.Chart().load({"id": ...})."""
+        """Entity factory: client.Chart().list() / client.Chart().load({"id": ...})."""
         from entity.chart_entity import ChartEntity
         return ChartEntity(self, data)
 
 
     def Currency(self, data=None) -> "CurrencyEntity":
-        """Entity factory: client.Currency().list({}) / client.Currency().load({"id": ...})."""
+        """Entity factory: client.Currency().list() / client.Currency().load({"id": ...})."""
         from entity.currency_entity import CurrencyEntity
         return CurrencyEntity(self, data)
 
 
     def Metadata(self, data=None) -> "MetadataEntity":
-        """Entity factory: client.Metadata().list({}) / client.Metadata().load({"id": ...})."""
+        """Entity factory: client.Metadata().list() / client.Metadata().load({"id": ...})."""
         from entity.metadata_entity import MetadataEntity
         return MetadataEntity(self, data)
 

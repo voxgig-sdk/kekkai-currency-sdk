@@ -10,7 +10,10 @@ export interface Chart {
   rate?: number
 }
 
-export type ChartListMatch = Partial<Chart>
+export interface ChartListMatch {
+  date?: string
+  rate?: number
+}
 
 export interface Currency {
   date?: string
@@ -19,7 +22,12 @@ export interface Currency {
   to?: string
 }
 
-export type CurrencyLoadMatch = Partial<Currency>
+export interface CurrencyLoadMatch {
+  date?: string
+  from?: string
+  rate?: number
+  to?: string
+}
 
 export interface Metadata {
   data_source?: any[]
@@ -29,5 +37,11 @@ export interface Metadata {
   version?: string
 }
 
-export type MetadataListMatch = Partial<Metadata>
+export interface MetadataListMatch {
+  data_source?: any[]
+  last_update?: string
+  status?: string
+  supported_currency?: Record<string, any>
+  version?: string
+}
 

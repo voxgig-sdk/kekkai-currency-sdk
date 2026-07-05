@@ -19,7 +19,7 @@ class Chart
     public ?float $rate = null;
 }
 
-/** Match filter for Chart#list (any subset of Chart fields). */
+/** Request payload for Chart#list. */
 class ChartListMatch
 {
     public ?string $date = null;
@@ -35,7 +35,7 @@ class Currency
     public ?string $to = null;
 }
 
-/** Match filter for Currency#load (any subset of Currency fields). */
+/** Request payload for Currency#load. */
 class CurrencyLoadMatch
 {
     public ?string $date = null;
@@ -54,7 +54,7 @@ class Metadata
     public ?string $version = null;
 }
 
-/** Match filter for Metadata#list (any subset of Metadata fields). */
+/** Request payload for Metadata#list. */
 class MetadataListMatch
 {
     public ?array $data_source = null;

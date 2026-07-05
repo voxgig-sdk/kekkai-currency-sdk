@@ -140,8 +140,8 @@ const chart = client.Chart()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `number` | No |  |
 
 ### Operations
 
@@ -191,10 +191,10 @@ const currency = client.Currency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `date` | `string` | No |  |
+| `from` | `string` | No |  |
+| `rate` | `number` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -203,7 +203,7 @@ const currency = client.Currency()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Currency().load({ id: 'currency_id' })
+const result = await client.Currency().load()
 ```
 
 ### Common Methods
@@ -244,11 +244,11 @@ const metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `supported_currency` | ``$OBJECT`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `any[]` | No |  |
+| `last_update` | `string` | No |  |
+| `status` | `string` | No |  |
+| `supported_currency` | `Record<string, any>` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

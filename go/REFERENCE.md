@@ -105,8 +105,8 @@ chart := client.Chart(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `float64` | No |  |
 
 ### Operations
 
@@ -152,10 +152,10 @@ currency := client.Currency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `date` | `string` | No |  |
+| `from` | `string` | No |  |
+| `rate` | `float64` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -164,7 +164,7 @@ currency := client.Currency(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Currency(nil).Load(map[string]any{"id": "currency_id"}, nil)
+result, err := client.Currency(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -201,11 +201,11 @@ metadata := client.Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `supported_currency` | ``$OBJECT`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `[]any` | No |  |
+| `last_update` | `string` | No |  |
+| `status` | `string` | No |  |
+| `supported_currency` | `map[string]any` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

@@ -98,8 +98,8 @@ local chart = client:Chart(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
+| `date` | `string` | No |  |
+| `rate` | `number` | No |  |
 
 ### Operations
 
@@ -151,10 +151,10 @@ local currency = client:Currency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `date` | `string` | No |  |
+| `from` | `string` | No |  |
+| `rate` | `number` | No |  |
+| `to` | `string` | No |  |
 
 ### Operations
 
@@ -163,7 +163,7 @@ local currency = client:Currency(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Currency():load({ id = "currency_id" })
+local result, err = client:Currency():load()
 ```
 
 ### Common Methods
@@ -206,11 +206,11 @@ local metadata = client:Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `supported_currency` | ``$OBJECT`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `table` | No |  |
+| `last_update` | `string` | No |  |
+| `status` | `string` | No |  |
+| `supported_currency` | `table` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 

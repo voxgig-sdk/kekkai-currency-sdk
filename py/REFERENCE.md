@@ -8,7 +8,7 @@ Complete API reference for the KekkaiCurrency Python SDK.
 ### Constructor
 
 ```python
-from kekkai-currency_sdk import KekkaiCurrencySDK
+from kekkaicurrency_sdk import KekkaiCurrencySDK
 
 client = KekkaiCurrencySDK(options)
 ```
@@ -95,17 +95,17 @@ chart = client.Chart()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
+| `date` | `str` | No |  |
+| `rate` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Chart().list({})
+results = client.Chart().list()
 for chart in results:
     print(chart)
 ```
@@ -149,10 +149,10 @@ currency = client.Currency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `date` | `str` | No |  |
+| `from` | `str` | No |  |
+| `rate` | `float` | No |  |
+| `to` | `str` | No |  |
 
 ### Operations
 
@@ -161,7 +161,7 @@ currency = client.Currency()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Currency().load({"id": "currency_id"})
+result = client.Currency().load()
 ```
 
 ### Common Methods
@@ -203,20 +203,20 @@ metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `supported_currency` | ``$OBJECT`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `list` | No |  |
+| `last_update` | `str` | No |  |
+| `status` | `str` | No |  |
+| `supported_currency` | `dict` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Metadata().list({})
+results = client.Metadata().list()
 for metadata in results:
     print(metadata)
 ```

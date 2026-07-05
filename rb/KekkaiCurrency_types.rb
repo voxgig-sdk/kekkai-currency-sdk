@@ -21,7 +21,7 @@ Chart = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Chart#list (any subset of Chart fields).
+# Request payload for Chart#list.
 #
 # @!attribute [rw] date
 #   @return [String, nil]
@@ -55,7 +55,7 @@ Currency = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Currency#load (any subset of Currency fields).
+# Request payload for Currency#load.
 #
 # @!attribute [rw] date
 #   @return [String, nil]
@@ -101,7 +101,7 @@ Metadata = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Metadata#list (any subset of Metadata fields).
+# Request payload for Metadata#list.
 #
 # @!attribute [rw] data_source
 #   @return [Array, nil]

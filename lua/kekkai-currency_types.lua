@@ -11,6 +11,8 @@
 ---@field rate? number
 
 ---@class ChartListMatch
+---@field date? string
+---@field rate? number
 
 ---@class Currency
 ---@field date? string
@@ -19,6 +21,10 @@
 ---@field to? string
 
 ---@class CurrencyLoadMatch
+---@field date? string
+---@field from? string
+---@field rate? number
+---@field to? string
 
 ---@class Metadata
 ---@field data_source? table
@@ -28,6 +34,11 @@
 ---@field version? string
 
 ---@class MetadataListMatch
+---@field data_source? table
+---@field last_update? string
+---@field status? string
+---@field supported_currency? table
+---@field version? string
 
 local M = {}
 

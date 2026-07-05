@@ -8,7 +8,7 @@ Complete API reference for the KekkaiCurrency Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'kekkai-currency_sdk'
+require_relative 'KekkaiCurrency_sdk'
 
 client = KekkaiCurrencySDK.new(options)
 ```
@@ -101,17 +101,17 @@ chart = client.Chart
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
+| `date` | `String` | No |  |
+| `rate` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Chart.list(nil)
+results = client.Chart.list
 ```
 
 ### Common Methods
@@ -154,10 +154,10 @@ currency = client.Currency
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | ``$STRING`` | No |  |
-| `from` | ``$STRING`` | No |  |
-| `rate` | ``$NUMBER`` | No |  |
-| `to` | ``$STRING`` | No |  |
+| `date` | `String` | No |  |
+| `from` | `String` | No |  |
+| `rate` | `Float` | No |  |
+| `to` | `String` | No |  |
 
 ### Operations
 
@@ -166,7 +166,7 @@ currency = client.Currency
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Currency.load({ "id" => "currency_id" })
+result = client.Currency.load()
 ```
 
 ### Common Methods
@@ -209,20 +209,20 @@ metadata = client.Metadata
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | ``$ARRAY`` | No |  |
-| `last_update` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `supported_currency` | ``$OBJECT`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `data_source` | `Array` | No |  |
+| `last_update` | `String` | No |  |
+| `status` | `String` | No |  |
+| `supported_currency` | `Hash` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Metadata.list(nil)
+results = client.Metadata.list
 ```
 
 ### Common Methods
