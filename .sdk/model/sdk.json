@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -474,6 +471,7 @@
           "name": "Open Source",
           "url": "https://github.com/Redume/Kekkai"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
@@ -484,8 +482,10 @@
             "url": "http://localhost:8080"
           }
         ],
+        "summary": "Kekkai is an open-source API that allows you to collect and save historical currency data from various sources.",
         "title": "Kekkai Currency API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://kekkai-docs.redume.su"
       },
       "option": {},
       "target": {
@@ -538,6 +538,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -588,6 +591,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 chart := client.Chart(nil)
+fmt.Println(chart.GetName()) // "chart"
 ```
 
 ### Fields
@@ -116,6 +117,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Chart(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -146,6 +151,7 @@ Return the entity name.
 
 ```go
 currency := client.Currency(nil)
+fmt.Println(currency.GetName()) // "currency"
 ```
 
 ### Fields
@@ -165,6 +171,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Currency(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -195,6 +205,7 @@ Return the entity name.
 
 ```go
 metadata := client.Metadata(nil)
+fmt.Println(metadata.GetName()) // "metadata"
 ```
 
 ### Fields
@@ -215,6 +226,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Metadata(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

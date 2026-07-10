@@ -24,9 +24,9 @@ main: {
           url: "http://localhost:8080"
         }
       ]
+      summary: "Kekkai is an open-source API that allows you to collect and save historical currency data from various sources."
       title: "Kekkai Currency API"
       version: "1.0.0"
+      website: "https://kekkai-docs.redume.su"
     }
   }
-}
-
