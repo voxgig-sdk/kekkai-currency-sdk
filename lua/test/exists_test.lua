@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- KekkaiCurrency SDK exists test
 
 local sdk = require("kekkai-currency_sdk")
 
