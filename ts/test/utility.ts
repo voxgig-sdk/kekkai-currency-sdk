@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.KEKKAICURRENCY_TEST_LIVE ||
-    'TRUE' === process.env.KEKKAICURRENCY_TEST_OVERRIDE
+    'TRUE' === process.env.KEKKAI_CURRENCY_TEST_LIVE ||
+    'TRUE' === process.env.KEKKAI_CURRENCY_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.KEKKAICURRENCY_TEST_EXPLAIN = process.env.KEKKAICURRENCY_TEST_EXPLAIN || m.KEKKAICURRENCY_TEST_EXPLAIN
+  m.KEKKAI_CURRENCY_TEST_EXPLAIN = process.env.KEKKAI_CURRENCY_TEST_EXPLAIN || m.KEKKAI_CURRENCY_TEST_EXPLAIN
 
   return m
 }

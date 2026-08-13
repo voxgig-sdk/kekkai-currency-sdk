@@ -26,8 +26,8 @@ import {
 describe('CurrencyEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KEKKAICURRENCY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KEKKAICURRENCY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KEKKAI_CURRENCY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KEKKAI_CURRENCY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KekkaiCurrencySDK.test()
@@ -62,7 +62,7 @@ describe('CurrencyEntity', async () => {
     // LOAD
     const currency_ref01_ent = client.Currency()
     const currency_ref01_match_dt0: any = {}
-    const currency_ref01_data_dt0 = await currency_ref01_ent.load(currency_ref01_match_dt0)
+    const currency_ref01_data_dt0 = (await currency_ref01_ent.load(currency_ref01_match_dt0)).data()
     assert(null != currency_ref01_data_dt0)
 
 

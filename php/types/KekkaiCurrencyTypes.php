@@ -47,20 +47,20 @@ class CurrencyLoadMatch
 /** Metadata entity data model. */
 class Metadata
 {
-    public ?array $data_source = null;
-    public ?string $last_update = null;
+    public ?array $dataSources = null;
+    public ?string $lastUpdate = null;
     public ?string $status = null;
-    public ?array $supported_currency = null;
+    public ?array $supportedCurrencies = null;
     public ?string $version = null;
 }
 
 /** Request payload for Metadata#list. */
 class MetadataListMatch
 {
-    public ?array $data_source = null;
-    public ?string $last_update = null;
+    public ?array $dataSources = null;
+    public ?string $lastUpdate = null;
     public ?string $status = null;
-    public ?array $supported_currency = null;
+    public ?array $supportedCurrencies = null;
     public ?string $version = null;
 }
 

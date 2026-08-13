@@ -26,8 +26,8 @@ import {
 describe('ChartEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KEKKAICURRENCY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KEKKAICURRENCY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KEKKAI_CURRENCY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KEKKAI_CURRENCY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KekkaiCurrencySDK.test()
@@ -63,7 +63,7 @@ describe('ChartEntity', async () => {
     const chart_ref01_ent = client.Chart()
     const chart_ref01_match: any = {}
 
-    const chart_ref01_list = await chart_ref01_ent.list(chart_ref01_match)
+    const chart_ref01_list = (await chart_ref01_ent.list(chart_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -203,10 +203,10 @@ metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `list` | No |  |
-| `last_update` | `str` | No |  |
+| `dataSources` | `list` | No |  |
+| `lastUpdate` | `str` | No |  |
 | `status` | `str` | No |  |
-| `supported_currency` | `dict` | No |  |
+| `supportedCurrencies` | `dict` | No |  |
 | `version` | `str` | No |  |
 
 ### Operations

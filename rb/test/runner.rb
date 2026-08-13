@@ -23,8 +23,8 @@ module KekkaiCurrencyTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("KEKKAICURRENCY_TEST_LIVE")
-    override = getenv("KEKKAICURRENCY_TEST_OVERRIDE")
+    live = getenv("KEKKAI_CURRENCY_TEST_LIVE")
+    override = getenv("KEKKAI_CURRENCY_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module KekkaiCurrencyTestRunner
       end
     end
 
-    explain = getenv("KEKKAICURRENCY_TEST_EXPLAIN")
-    m["KEKKAICURRENCY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("KEKKAI_CURRENCY_TEST_EXPLAIN")
+    m["KEKKAI_CURRENCY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

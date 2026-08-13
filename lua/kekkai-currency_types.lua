@@ -27,17 +27,17 @@
 ---@field to? string
 
 ---@class Metadata
----@field data_source? table
----@field last_update? string
+---@field dataSources? table
+---@field lastUpdate? string
 ---@field status? string
----@field supported_currency? table
+---@field supportedCurrencies? table
 ---@field version? string
 
 ---@class MetadataListMatch
----@field data_source? table
----@field last_update? string
+---@field dataSources? table
+---@field lastUpdate? string
 ---@field status? string
----@field supported_currency? table
+---@field supportedCurrencies? table
 ---@field version? string
 
 local M = {}

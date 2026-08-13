@@ -206,10 +206,10 @@ local metadata = client:Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `table` | No |  |
-| `last_update` | `string` | No |  |
+| `dataSources` | `table` | No |  |
+| `lastUpdate` | `string` | No |  |
 | `status` | `string` | No |  |
-| `supported_currency` | `table` | No |  |
+| `supportedCurrencies` | `table` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

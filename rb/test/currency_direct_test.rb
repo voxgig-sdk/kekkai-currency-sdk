@@ -66,11 +66,11 @@ def currency_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "KEKKAICURRENCY_TEST_CURRENCY_ENTID" => {},
-    "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
+    "KEKKAI_CURRENCY_TEST_CURRENCY_ENTID" => {},
+    "KEKKAI_CURRENCY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["KEKKAICURRENCY_TEST_LIVE"] == "TRUE"
+  live = env["KEKKAI_CURRENCY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'KekkaiCurrency',
   }
 
 
@@ -132,6 +132,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/getChart",
               "parts": [
@@ -149,7 +150,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -231,6 +232,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/api/getRate",
               "parts": [
@@ -262,14 +264,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data_source",
+          "name": "dataSources",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "last_update",
+          "name": "lastUpdate",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -283,7 +285,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "supported_currency",
+          "name": "supportedCurrencies",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 3
@@ -305,6 +307,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/api/metadata",
               "parts": [

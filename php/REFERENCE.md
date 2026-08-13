@@ -208,10 +208,10 @@ $metadata = $client->Metadata();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `array` | No |  |
-| `last_update` | `string` | No |  |
+| `dataSources` | `array` | No |  |
+| `lastUpdate` | `string` | No |  |
 | `status` | `string` | No |  |
-| `supported_currency` | `array` | No |  |
+| `supportedCurrencies` | `array` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

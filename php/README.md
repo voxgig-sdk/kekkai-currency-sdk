@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $charts = $client->Chart()->list();
+    $currency = $client->Currency()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = KekkaiCurrencySDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$chart = $client->Chart()->list();
-print_r($chart);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$currency = $client->Currency()->load();
+print_r($currency);
 ```
 
 ### Use a custom fetch function
@@ -227,7 +228,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -273,10 +274,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_update` |  |
+| `dataSources` |  |
+| `lastUpdate` |  |
 | `status` |  |
-| `supported_currency` |  |
+| `supportedCurrencies` |  |
 | `version` |  |
 
 Operations: List.
@@ -335,7 +336,7 @@ Create an instance: `$currency = $client->Currency();`
 #### Example: Load
 
 ```php
-// load() returns the bare Currency record (throws on error).
+// load() returns the ENTITY — call data_get() for the Currency record (throws on error).
 $currency = $client->Currency()->load();
 ```
 
@@ -354,10 +355,10 @@ Create an instance: `$metadata = $client->Metadata();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `array` |  |
-| `last_update` | `string` |  |
+| `dataSources` | `array` |  |
+| `lastUpdate` | `string` |  |
 | `status` | `string` |  |
-| `supported_currency` | `array` |  |
+| `supportedCurrencies` | `array` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -440,15 +441,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$chart = $client->Chart();
-$chart->list();
+$currency = $client->Currency();
+$currency->load();
 
-// $chart->data_get() now returns the chart data from the last list
-// $chart->match_get() returns the last match criteria
+// $currency->data_get() now returns the currency data from the last load
+// $currency->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

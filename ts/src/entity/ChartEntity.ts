@@ -37,7 +37,7 @@ class ChartEntity extends KekkaiCurrencyEntityBase<Chart> {
 
 
 
-  async list(this: any, reqmatch?: ChartListMatch, ctrl?: Control): Promise<Chart[]> {
+  async list(this: any, reqmatch?: ChartListMatch, ctrl?: Control): Promise<ChartEntity[]> {
 
     const utility = this._utility
 

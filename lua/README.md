@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local charts, err = client:Chart():list()
+local currency, err = client:Currency():load()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Chart():list()
+local result, err = client:Currency():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -222,9 +222,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local chart, err = client:Chart():load()
+    local currency, err = client:Currency():load()
     if err then error(err) end
-    -- chart is the loaded record
+    -- currency is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -259,10 +259,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_update` |  |
+| `dataSources` |  |
+| `lastUpdate` |  |
 | `status` |  |
-| `supported_currency` |  |
+| `supportedCurrencies` |  |
 | `version` |  |
 
 Operations: List.
@@ -338,10 +338,10 @@ Create an instance: `local metadata = client:Metadata(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `table` |  |
-| `last_update` | `string` |  |
+| `dataSources` | `table` |  |
+| `lastUpdate` | `string` |  |
 | `status` | `string` |  |
-| `supported_currency` | `table` |  |
+| `supportedCurrencies` | `table` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -423,15 +423,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local chart = client:Chart()
-chart:list()
+local currency = client:Currency()
+currency:load()
 
--- chart:data_get() now returns the chart data from the last list
--- chart:match_get() returns the last match criteria
+-- currency:data_get() now returns the currency data from the last load
+-- currency:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

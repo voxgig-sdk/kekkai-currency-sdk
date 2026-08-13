@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-charts, err := client.Chart(nil).List(nil, nil)
+currency, err := client.Currency(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = charts
+_ = currency
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-chart, err := client.Chart(nil).List(
+currency, err := client.Currency(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(chart) // the returned mock data
+fmt.Println(currency) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -288,10 +288,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `"data_source"` |  |
-| `"last_update"` |  |
+| `"dataSources"` |  |
+| `"lastUpdate"` |  |
 | `"status"` |  |
-| `"supported_currency"` |  |
+| `"supportedCurrencies"` |  |
 | `"version"` |  |
 
 Operations: List.
@@ -375,10 +375,10 @@ Create an instance: `metadata := client.Metadata(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `[]any` |  |
-| `last_update` | `string` |  |
+| `dataSources` | `[]any` |  |
+| `lastUpdate` | `string` |  |
 | `status` | `string` |  |
-| `supported_currency` | `map[string]any` |  |
+| `supportedCurrencies` | `map[string]any` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -461,15 +461,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-chart := client.Chart(nil)
-chart.List(nil, nil)
+currency := client.Currency(nil)
+currency.Load(nil, nil)
 
-// chart.Data() now returns the chart data from the last list
-// chart.Match() returns the last match criteria
+// currency.Data() now returns the currency data from the last load
+// currency.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

@@ -78,50 +78,50 @@ CurrencyLoadMatch = Struct.new(
 
 # Metadata entity data model.
 #
-# @!attribute [rw] data_source
+# @!attribute [rw] dataSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] last_update
+# @!attribute [rw] lastUpdate
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] supported_currency
+# @!attribute [rw] supportedCurrencies
 #   @return [Hash, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 Metadata = Struct.new(
-  :data_source,
-  :last_update,
+  :dataSources,
+  :lastUpdate,
   :status,
-  :supported_currency,
+  :supportedCurrencies,
   :version,
   keyword_init: true
 )
 
 # Request payload for Metadata#list.
 #
-# @!attribute [rw] data_source
+# @!attribute [rw] dataSources
 #   @return [Array, nil]
 #
-# @!attribute [rw] last_update
+# @!attribute [rw] lastUpdate
 #   @return [String, nil]
 #
 # @!attribute [rw] status
 #   @return [String, nil]
 #
-# @!attribute [rw] supported_currency
+# @!attribute [rw] supportedCurrencies
 #   @return [Hash, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 MetadataListMatch = Struct.new(
-  :data_source,
-  :last_update,
+  :dataSources,
+  :lastUpdate,
   :status,
-  :supported_currency,
+  :supportedCurrencies,
   :version,
   keyword_init: true
 )

@@ -244,10 +244,10 @@ const metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `any[]` | No |  |
-| `last_update` | `string` | No |  |
+| `dataSources` | `any[]` | No |  |
+| `lastUpdate` | `string` | No |  |
 | `status` | `string` | No |  |
-| `supported_currency` | `Record<string, any>` | No |  |
+| `supportedCurrencies` | `Record<string, any>` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

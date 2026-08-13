@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ KekkaiCurrencyUtility::setRegistrar(function (KekkaiCurrencyUtility $u): void {
     $u->prepare_params = [KekkaiCurrencyPrepareParams::class, 'call'];
     $u->prepare_path = [KekkaiCurrencyPreparePath::class, 'call'];
     $u->prepare_query = [KekkaiCurrencyPrepareQuery::class, 'call'];
+    $u->graphql_body = [KekkaiCurrencyGraphql::class, 'body'];
+    $u->graphql_errors = [KekkaiCurrencyGraphql::class, 'errors'];
     $u->result_basic = [KekkaiCurrencyResultBasic::class, 'call'];
     $u->result_body = [KekkaiCurrencyResultBody::class, 'call'];
     $u->result_headers = [KekkaiCurrencyResultHeaders::class, 'call'];

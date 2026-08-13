@@ -209,10 +209,10 @@ metadata = client.Metadata
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `Array` | No |  |
-| `last_update` | `String` | No |  |
+| `dataSources` | `Array` | No |  |
+| `lastUpdate` | `String` | No |  |
 | `status` | `String` | No |  |
-| `supported_currency` | `Hash` | No |  |
+| `supportedCurrencies` | `Hash` | No |  |
 | `version` | `String` | No |  |
 
 ### Operations

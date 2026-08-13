@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# KekkaiCurrency SDK exists test
 
 import pytest
 from kekkaicurrency_sdk import KekkaiCurrencySDK

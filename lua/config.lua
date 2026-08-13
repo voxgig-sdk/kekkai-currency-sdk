@@ -98,6 +98,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/getChart",
                 ["parts"] = {
@@ -115,7 +116,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.data`",
                 },
                 ["index$"] = 0,
               },
@@ -197,6 +198,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/getRate",
                 ["parts"] = {
@@ -228,14 +230,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "data_source",
+            ["name"] = "dataSources",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "last_update",
+            ["name"] = "lastUpdate",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -249,7 +251,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "supported_currency",
+            ["name"] = "supportedCurrencies",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 3,
@@ -271,6 +273,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/metadata",
                 ["parts"] = {

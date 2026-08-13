@@ -35,7 +35,9 @@ const client = new KekkaiCurrencySDK()
 
 ### 2. List chart records
 
-`list()` resolves to an array of Chart objects — iterate it directly:
+`list()` resolves to an array of Chart ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const charts = await client.Chart().list()
@@ -52,10 +54,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const charts = await client.Chart().list()
-  console.log(charts)
+  const currency = await client.Currency().load()
+  console.log(currency)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KekkaiCurrencySDK.test()
 
-const chart = await client.Chart().list()
-// chart is a bare entity populated with mock response data
-console.log(chart)
+const currency = await client.Currency().load()
+// currency is the entity, populated with mock response data
+// — call currency.data() for the record itself
+console.log(currency)
 ```
 
 You can also use the instance method:
@@ -136,10 +139,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Chart()
+const entity = client.Currency()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -312,10 +315,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_update` |  |
+| `dataSources` |  |
+| `lastUpdate` |  |
 | `status` |  |
-| `supported_currency` |  |
+| `supportedCurrencies` |  |
 | `version` |  |
 
 Operations: list.
@@ -391,10 +394,10 @@ Create an instance: `const metadata = client.Metadata()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `any[]` |  |
-| `last_update` | `string` |  |
+| `dataSources` | `any[]` |  |
+| `lastUpdate` | `string` |  |
 | `status` | `string` |  |
-| `supported_currency` | `Record<string, any>` |  |
+| `supportedCurrencies` | `Record<string, any>` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -468,16 +471,16 @@ import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const chart = client.Chart()
-await chart.list()
+const currency = client.Currency()
+await currency.load()
 
-// chart.data() now returns the chart data from the last `list`
-// chart.match() returns the last match criteria
+// currency.data() now returns the currency data from the last `load`
+// currency.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

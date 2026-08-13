@@ -37,7 +37,7 @@ class MetadataEntity extends KekkaiCurrencyEntityBase<Metadata> {
 
 
 
-  async list(this: any, reqmatch?: MetadataListMatch, ctrl?: Control): Promise<Metadata[]> {
+  async list(this: any, reqmatch?: MetadataListMatch, ctrl?: Control): Promise<MetadataEntity[]> {
 
     const utility = this._utility
 

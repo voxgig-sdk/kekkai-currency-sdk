@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = KekkaiCurrencySDK.test()
-const charts = await client.Chart().list()
-// charts is an array of bare Chart records populated with mock data
-console.log(charts)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = KekkaiCurrencySDK.test({
+  entity: {
+    currency: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const currency = await client.Currency().load()
+// currency is the Currency entity, populated with mock data
+// — call currency.data() for the record itself
+console.log(currency)
 ```
 
 ### Python
 
 ```python
 client = KekkaiCurrencySDK.test()
-charts = client.Chart().list()
-print(charts)
+currency = client.Currency().load()
+print(currency)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(charts)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = KekkaiCurrencySDK::test([
-    "entity" => ["chart" => ["test01" => []]],
+    "entity" => ["currency" => ["test01" => []]],
 ]);
-$charts = $client->Chart()->list();
+$currency = $client->Currency()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Chart(nil).List(
+result, err := client.Currency(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Chart(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = KekkaiCurrencySDK.test({
-  "entity" => { "chart" => { "test01" => {} } },
+  "entity" => { "currency" => { "test01" => {} } },
 })
-charts = client.Chart.list()
+currency = client.Currency.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Chart():list()
+local result, err = client:Currency():load()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
 
 const client = new KekkaiCurrencySDK()
 
-// List all charts (returns Chart[])
+// List all charts (returns ChartEntity[] — .data() for the record)
 const charts = await client.Chart().list()
 for (const chart of charts) {
   console.log(chart)
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://kekkai-docs.redume.su](https://kekkai-docs.redume.su)
 

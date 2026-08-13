@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  charts = client.Chart.list()
+  currency = client.Currency.load()
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = KekkaiCurrencySDK.test
 
-# Entity ops return the bare mock record (raises on error).
-chart = client.Chart.list()
-puts chart
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+currency = client.Currency.load()
+puts currency
 ```
 
 ### Use a custom fetch function
@@ -263,10 +264,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_update` |  |
+| `dataSources` |  |
+| `lastUpdate` |  |
 | `status` |  |
-| `supported_currency` |  |
+| `supportedCurrencies` |  |
 | `version` |  |
 
 Operations: List.
@@ -325,7 +326,7 @@ Create an instance: `currency = client.Currency`
 #### Example: Load
 
 ```ruby
-# load returns the bare Currency record (raises on error).
+# load returns the ENTITY — call data_get for the Currency record (raises on error).
 currency = client.Currency.load()
 ```
 
@@ -344,10 +345,10 @@ Create an instance: `metadata = client.Metadata`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `Array` |  |
-| `last_update` | `String` |  |
+| `dataSources` | `Array` |  |
+| `lastUpdate` | `String` |  |
 | `status` | `String` |  |
-| `supported_currency` | `Hash` |  |
+| `supportedCurrencies` | `Hash` |  |
 | `version` | `String` |  |
 
 #### Example: List
@@ -430,15 +431,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-chart = client.Chart
-chart.list()
+currency = client.Currency
+currency.load()
 
-# chart.data_get now returns the chart data from the last list
-# chart.match_get returns the last match criteria
+# currency.data_get now returns the currency data from the last load
+# currency.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

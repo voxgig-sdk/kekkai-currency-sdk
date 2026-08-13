@@ -57,10 +57,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    charts = client.Chart().list()
-    print(charts)
+    currency = client.Currency().load()
+    print(currency)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = KekkaiCurrencySDK.test()
 
-# Entity ops return the bare record and raise on error.
-chart = client.Chart().list()
-# chart contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+currency = client.Currency().load()
+# currency contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -223,7 +224,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -269,10 +270,10 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `data_source` |  |
-| `last_update` |  |
+| `dataSources` |  |
+| `lastUpdate` |  |
 | `status` |  |
-| `supported_currency` |  |
+| `supportedCurrencies` |  |
 | `version` |  |
 
 Operations: List.
@@ -348,10 +349,10 @@ Create an instance: `metadata = client.Metadata()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data_source` | `list` |  |
-| `last_update` | `str` |  |
+| `dataSources` | `list` |  |
+| `lastUpdate` | `str` |  |
 | `status` | `str` |  |
-| `supported_currency` | `dict` |  |
+| `supportedCurrencies` | `dict` |  |
 | `version` | `str` |  |
 
 #### Example: List
@@ -432,15 +433,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-chart = client.Chart()
-chart.list()
+currency = client.Currency()
+currency.load()
 
-# chart.data_get() now returns the chart data from the last list
-# chart.match_get() returns the last match criteria
+# currency.data_get() now returns the currency data from the last load
+# currency.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

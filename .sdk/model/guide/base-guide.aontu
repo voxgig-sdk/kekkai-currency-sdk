@@ -8,6 +8,7 @@ guide: {
   entity: chart: {
     path: "/api/getChart": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 

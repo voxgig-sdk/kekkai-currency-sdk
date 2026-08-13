@@ -43,8 +43,8 @@ class KekkaiCurrencyTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('KEKKAICURRENCY_TEST_LIVE');
-        $override = self::getenv('KEKKAICURRENCY_TEST_OVERRIDE');
+        $live = self::getenv('KEKKAI_CURRENCY_TEST_LIVE');
+        $override = self::getenv('KEKKAI_CURRENCY_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class KekkaiCurrencyTestRunner
             }
         }
 
-        $explain = self::getenv('KEKKAICURRENCY_TEST_EXPLAIN');
+        $explain = self::getenv('KEKKAI_CURRENCY_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['KEKKAICURRENCY_TEST_EXPLAIN'] = $explain;
+            $m['KEKKAI_CURRENCY_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

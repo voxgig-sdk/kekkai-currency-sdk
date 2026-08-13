@@ -212,10 +212,10 @@ fmt.Println(metadata.GetName()) // "metadata"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data_source` | `[]any` | No |  |
-| `last_update` | `string` | No |  |
+| `dataSources` | `[]any` | No |  |
+| `lastUpdate` | `string` | No |  |
 | `status` | `string` | No |  |
-| `supported_currency` | `map[string]any` | No |  |
+| `supportedCurrencies` | `map[string]any` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations

@@ -2,24 +2,24 @@
   "existing": {
     "metadata": {
       "METADATA00": {
-        "data_source": [],
-        "last_update": "s33",
+        "dataSources": [],
+        "lastUpdate": "s33",
         "status": "s34",
-        "supported_currency": {},
+        "supportedCurrencies": {},
         "version": "s36"
       },
       "METADATA01": {
-        "data_source": [],
-        "last_update": "s65",
+        "dataSources": [],
+        "lastUpdate": "s65",
         "status": "s66",
-        "supported_currency": {},
+        "supportedCurrencies": {},
         "version": "s68"
       },
       "METADATA02": {
-        "data_source": [],
-        "last_update": "s97",
+        "dataSources": [],
+        "lastUpdate": "s97",
         "status": "s98",
-        "supported_currency": {},
+        "supportedCurrencies": {},
         "version": "s9a"
       }
     }
@@ -27,10 +27,10 @@
   "new": {
     "metadata": {
       "metadata_ref01": {
-        "data_source": [],
-        "last_update": "sc9",
+        "dataSources": [],
+        "lastUpdate": "sc9",
         "status": "sca",
-        "supported_currency": {},
+        "supportedCurrencies": {},
         "version": "scc"
       }
     }

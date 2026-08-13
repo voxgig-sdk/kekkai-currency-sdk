@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ KekkaiCurrencyUtility.registrar = ->(u) {
   u.prepare_params = KekkaiCurrencyUtilities::PrepareParams
   u.prepare_path = KekkaiCurrencyUtilities::PreparePath
   u.prepare_query = KekkaiCurrencyUtilities::PrepareQuery
+  u.graphql_body = KekkaiCurrencyUtilities::GraphqlBody
+  u.graphql_errors = KekkaiCurrencyUtilities::GraphqlErrors
   u.result_basic = KekkaiCurrencyUtilities::ResultBasic
   u.result_body = KekkaiCurrencyUtilities::ResultBody
   u.result_headers = KekkaiCurrencyUtilities::ResultHeaders

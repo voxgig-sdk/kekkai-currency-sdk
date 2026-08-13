@@ -30,18 +30,18 @@ export interface CurrencyLoadMatch {
 }
 
 export interface Metadata {
-  data_source?: any[]
-  last_update?: string
+  dataSources?: any[]
+  lastUpdate?: string
   status?: string
-  supported_currency?: Record<string, any>
+  supportedCurrencies?: Record<string, any>
   version?: string
 }
 
 export interface MetadataListMatch {
-  data_source?: any[]
-  last_update?: string
+  dataSources?: any[]
+  lastUpdate?: string
   status?: string
-  supported_currency?: Record<string, any>
+  supportedCurrencies?: Record<string, any>
   version?: string
 }
 

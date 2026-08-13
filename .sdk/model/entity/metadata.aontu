@@ -6,12 +6,12 @@ main: kit: entity: metadata: {
 
   fields: [
     {
-      name: "data_source"
+      name: "dataSources"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "last_update"
+      name: "lastUpdate"
       req: false
       type: "`$STRING`"
     }
@@ -21,7 +21,7 @@ main: kit: entity: metadata: {
       type: "`$STRING`"
     }
     {
-      name: "supported_currency"
+      name: "supportedCurrencies"
       req: false
       type: "`$OBJECT`"
     }

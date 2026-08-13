@@ -19,11 +19,15 @@ import {
 describe('MetadataDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KEKKAICURRENCY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KEKKAICURRENCY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KEKKAI_CURRENCY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KEKKAI_CURRENCY_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new KekkaiCurrencySDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'KEKKAICURRENCY_TEST_METADATA_ENTID': {},
-    'KEKKAICURRENCY_TEST_LIVE': 'FALSE',
+    'KEKKAI_CURRENCY_TEST_METADATA_ENTID': {},
+    'KEKKAI_CURRENCY_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.KEKKAICURRENCY_TEST_LIVE
+  const live = 'TRUE' === env.KEKKAI_CURRENCY_TEST_LIVE
 
   if (live) {
     const client = new KekkaiCurrencySDK({
     })
 
-    let idmap: any = env['KEKKAICURRENCY_TEST_METADATA_ENTID']
+    let idmap: any = env['KEKKAI_CURRENCY_TEST_METADATA_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

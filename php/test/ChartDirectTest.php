@@ -66,11 +66,11 @@ function chart_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "KEKKAICURRENCY_TEST_CHART_ENTID" => [],
-        "KEKKAICURRENCY_TEST_LIVE" => "FALSE",
+        "KEKKAI_CURRENCY_TEST_CHART_ENTID" => [],
+        "KEKKAI_CURRENCY_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["KEKKAICURRENCY_TEST_LIVE"] === "TRUE";
+    $live = $env["KEKKAI_CURRENCY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

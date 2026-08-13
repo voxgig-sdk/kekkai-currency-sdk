@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import KekkaiCurrencyControl
-from core.error import KekkaiCurrencyError
-from core.result import KekkaiCurrencyResult
-from core.spec import KekkaiCurrencySpec
+from kekkaicurrency_sdk.config import make_config
+from kekkaicurrency_sdk.features import _make_feature
+from kekkaicurrency_sdk.core.control import KekkaiCurrencyControl
+from kekkaicurrency_sdk.core.error import KekkaiCurrencyError
+from kekkaicurrency_sdk.core.result import KekkaiCurrencyResult
+from kekkaicurrency_sdk.core.spec import KekkaiCurrencySpec
 
 
 # True when this SDK was generated with the named feature.

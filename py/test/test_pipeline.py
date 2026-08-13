@@ -16,11 +16,11 @@
 import pytest
 
 from kekkaicurrency_sdk import KekkaiCurrencySDK
-from core.error import KekkaiCurrencyError
-from core.result import KekkaiCurrencyResult
-from core.response import KekkaiCurrencyResponse
-from core.spec import KekkaiCurrencySpec
-from feature.base_feature import KekkaiCurrencyBaseFeature
+from kekkaicurrency_sdk.core.error import KekkaiCurrencyError
+from kekkaicurrency_sdk.core.result import KekkaiCurrencyResult
+from kekkaicurrency_sdk.core.response import KekkaiCurrencyResponse
+from kekkaicurrency_sdk.core.spec import KekkaiCurrencySpec
+from kekkaicurrency_sdk.feature.base_feature import KekkaiCurrencyBaseFeature
 
 
 def _client():

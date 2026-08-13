@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from kekkaicurrency_sdk.utility.voxgig_struct import voxgig_struct as vs
 from kekkaicurrency_sdk import KekkaiCurrencySDK
-from core import helpers
+from kekkaicurrency_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _chart_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "KEKKAICURRENCY_TEST_CHART_ENTID": {},
-        "KEKKAICURRENCY_TEST_LIVE": "FALSE",
+        "KEKKAI_CURRENCY_TEST_CHART_ENTID": {},
+        "KEKKAI_CURRENCY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("KEKKAICURRENCY_TEST_LIVE") == "TRUE"
+    live = env.get("KEKKAI_CURRENCY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
