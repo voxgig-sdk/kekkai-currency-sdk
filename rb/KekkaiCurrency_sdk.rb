@@ -28,7 +28,7 @@ class KekkaiCurrencySDK
     utility = KekkaiCurrencyUtility.new
     @_utility = utility
 
-    config = KekkaiCurrencyConfig.make_config
+    config = KekkaiCurrencyConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

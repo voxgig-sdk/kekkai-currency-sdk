@@ -40,7 +40,7 @@ class KekkaiCurrencySDK
         $utility = new KekkaiCurrencyUtility();
         $this->_utility = $utility;
 
-        $config = KekkaiCurrencyConfig::make_config();
+        $config = KekkaiCurrencyConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

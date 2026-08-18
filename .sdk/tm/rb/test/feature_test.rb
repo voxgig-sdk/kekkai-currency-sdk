@@ -15,7 +15,7 @@ require_relative "../KekkaiCurrency_sdk"
 module KekkaiCurrencyFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = KekkaiCurrencyConfig.make_config["feature"]
+    f = KekkaiCurrencyConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 
