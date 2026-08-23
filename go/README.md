@@ -6,7 +6,7 @@ The Golang SDK for the KekkaiCurrency API — an entity-oriented client using st
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Chart(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -275,10 +275,10 @@ API path: `/api/getChart`
 
 | Field | Description |
 | --- | --- |
-| `"date"` |  |
-| `"from"` |  |
-| `"rate"` |  |
-| `"to"` |  |
+| `"date"` | Date and time of the rate |
+| `"from"` | Source currency code |
+| `"rate"` | Exchange rate |
+| `"to"` | Target currency code |
 
 Operations: Load.
 
@@ -288,11 +288,11 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `"dataSources"` |  |
-| `"lastUpdate"` |  |
-| `"status"` |  |
+| `"dataSources"` | List of data sources used by the API |
+| `"lastUpdate"` | Timestamp of last data update |
+| `"status"` | System status |
 | `"supportedCurrencies"` |  |
-| `"version"` |  |
+| `"version"` | API version |
 
 Operations: List.
 
@@ -345,10 +345,10 @@ Create an instance: `currency := client.Currency(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `from` | `string` |  |
-| `rate` | `float64` |  |
-| `to` | `string` |  |
+| `date` | `string` | Date and time of the rate |
+| `from` | `string` | Source currency code |
+| `rate` | `float64` | Exchange rate |
+| `to` | `string` | Target currency code |
 
 #### Example: Load
 
@@ -375,11 +375,11 @@ Create an instance: `metadata := client.Metadata(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataSources` | `[]any` |  |
-| `lastUpdate` | `string` |  |
-| `status` | `string` |  |
+| `dataSources` | `[]any` | List of data sources used by the API |
+| `lastUpdate` | `string` | Timestamp of last data update |
+| `status` | `string` | System status |
 | `supportedCurrencies` | `map[string]any` |  |
-| `version` | `string` |  |
+| `version` | `string` | API version |
 
 #### Example: List
 

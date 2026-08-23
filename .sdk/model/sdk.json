@@ -140,24 +140,28 @@
               "active": true,
               "name": "date",
               "req": false,
+              "short": "Date and time of the rate",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "from",
               "req": false,
+              "short": "Source currency code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rate",
               "req": false,
+              "short": "Exchange rate",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "to",
               "req": false,
+              "short": "Target currency code",
               "type": "`$STRING`"
             }
           ],
@@ -236,18 +240,21 @@
               "active": true,
               "name": "dataSources",
               "req": false,
+              "short": "List of data sources used by the API",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "lastUpdate",
               "req": false,
+              "short": "Timestamp of last data update",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "System status",
               "type": "`$STRING`"
             },
             {
@@ -260,6 +267,7 @@
               "active": true,
               "name": "version",
               "req": false,
+              "short": "API version",
               "type": "`$STRING`"
             }
           ],

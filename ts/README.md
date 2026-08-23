@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -302,10 +302,10 @@ API path: `/api/getChart`
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `from` |  |
-| `rate` |  |
-| `to` |  |
+| `date` | Date and time of the rate |
+| `from` | Source currency code |
+| `rate` | Exchange rate |
+| `to` | Target currency code |
 
 Operations: load.
 
@@ -315,11 +315,11 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `dataSources` |  |
-| `lastUpdate` |  |
-| `status` |  |
+| `dataSources` | List of data sources used by the API |
+| `lastUpdate` | Timestamp of last data update |
+| `status` | System status |
 | `supportedCurrencies` |  |
-| `version` |  |
+| `version` | API version |
 
 Operations: list.
 
@@ -368,10 +368,10 @@ Create an instance: `const currency = client.Currency()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `string` |  |
-| `from` | `string` |  |
-| `rate` | `number` |  |
-| `to` | `string` |  |
+| `date` | `string` | Date and time of the rate |
+| `from` | `string` | Source currency code |
+| `rate` | `number` | Exchange rate |
+| `to` | `string` | Target currency code |
 
 #### Example: Load
 
@@ -394,11 +394,11 @@ Create an instance: `const metadata = client.Metadata()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataSources` | `any[]` |  |
-| `lastUpdate` | `string` |  |
-| `status` | `string` |  |
+| `dataSources` | `any[]` | List of data sources used by the API |
+| `lastUpdate` | `string` | Timestamp of last data update |
+| `status` | `string` | System status |
 | `supportedCurrencies` | `Record<string, any>` |  |
-| `version` | `string` |  |
+| `version` | `string` | API version |
 
 #### Example: List
 

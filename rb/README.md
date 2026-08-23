@@ -251,10 +251,10 @@ API path: `/api/getChart`
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `from` |  |
-| `rate` |  |
-| `to` |  |
+| `date` | Date and time of the rate |
+| `from` | Source currency code |
+| `rate` | Exchange rate |
+| `to` | Target currency code |
 
 Operations: Load.
 
@@ -264,11 +264,11 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `dataSources` |  |
-| `lastUpdate` |  |
-| `status` |  |
+| `dataSources` | List of data sources used by the API |
+| `lastUpdate` | Timestamp of last data update |
+| `status` | System status |
 | `supportedCurrencies` |  |
-| `version` |  |
+| `version` | API version |
 
 Operations: List.
 
@@ -318,10 +318,10 @@ Create an instance: `currency = client.Currency`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `String` |  |
-| `from` | `String` |  |
-| `rate` | `Float` |  |
-| `to` | `String` |  |
+| `date` | `String` | Date and time of the rate |
+| `from` | `String` | Source currency code |
+| `rate` | `Float` | Exchange rate |
+| `to` | `String` | Target currency code |
 
 #### Example: Load
 
@@ -345,11 +345,11 @@ Create an instance: `metadata = client.Metadata`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataSources` | `Array` |  |
-| `lastUpdate` | `String` |  |
-| `status` | `String` |  |
+| `dataSources` | `Array` | List of data sources used by the API |
+| `lastUpdate` | `String` | Timestamp of last data update |
+| `status` | `String` | System status |
 | `supportedCurrencies` | `Hash` |  |
-| `version` | `String` |  |
+| `version` | `String` | API version |
 
 #### Example: List
 

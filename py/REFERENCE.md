@@ -149,10 +149,10 @@ currency = client.Currency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `str` | No |  |
-| `from` | `str` | No |  |
-| `rate` | `float` | No |  |
-| `to` | `str` | No |  |
+| `date` | `str` | No | Date and time of the rate |
+| `from` | `str` | No | Source currency code |
+| `rate` | `float` | No | Exchange rate |
+| `to` | `str` | No | Target currency code |
 
 ### Operations
 
@@ -203,11 +203,11 @@ metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataSources` | `list` | No |  |
-| `lastUpdate` | `str` | No |  |
-| `status` | `str` | No |  |
+| `dataSources` | `list` | No | List of data sources used by the API |
+| `lastUpdate` | `str` | No | Timestamp of last data update |
+| `status` | `str` | No | System status |
 | `supportedCurrencies` | `dict` | No |  |
-| `version` | `str` | No |  |
+| `version` | `str` | No | API version |
 
 ### Operations
 

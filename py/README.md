@@ -257,10 +257,10 @@ API path: `/api/getChart`
 
 | Field | Description |
 | --- | --- |
-| `date` |  |
-| `from` |  |
-| `rate` |  |
-| `to` |  |
+| `date` | Date and time of the rate |
+| `from` | Source currency code |
+| `rate` | Exchange rate |
+| `to` | Target currency code |
 
 Operations: Load.
 
@@ -270,11 +270,11 @@ API path: `/api/getRate`
 
 | Field | Description |
 | --- | --- |
-| `dataSources` |  |
-| `lastUpdate` |  |
-| `status` |  |
+| `dataSources` | List of data sources used by the API |
+| `lastUpdate` | Timestamp of last data update |
+| `status` | System status |
 | `supportedCurrencies` |  |
-| `version` |  |
+| `version` | API version |
 
 Operations: List.
 
@@ -323,10 +323,10 @@ Create an instance: `currency = client.Currency()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `date` | `str` |  |
-| `from` | `str` |  |
-| `rate` | `float` |  |
-| `to` | `str` |  |
+| `date` | `str` | Date and time of the rate |
+| `from` | `str` | Source currency code |
+| `rate` | `float` | Exchange rate |
+| `to` | `str` | Target currency code |
 
 #### Example: Load
 
@@ -349,11 +349,11 @@ Create an instance: `metadata = client.Metadata()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `dataSources` | `list` |  |
-| `lastUpdate` | `str` |  |
-| `status` | `str` |  |
+| `dataSources` | `list` | List of data sources used by the API |
+| `lastUpdate` | `str` | Timestamp of last data update |
+| `status` | `str` | System status |
 | `supportedCurrencies` | `dict` |  |
-| `version` | `str` |  |
+| `version` | `str` | API version |
 
 #### Example: List
 

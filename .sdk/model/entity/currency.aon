@@ -8,21 +8,25 @@ main: kit: entity: currency: {
     {
       name: "date"
       req: false
+      short: "Date and time of the rate"
       type: "`$STRING`"
     }
     {
       name: "from"
       req: false
+      short: "Source currency code"
       type: "`$STRING`"
     }
     {
       name: "rate"
       req: false
+      short: "Exchange rate"
       type: "`$NUMBER`"
     }
     {
       name: "to"
       req: false
+      short: "Target currency code"
       type: "`$STRING`"
     }
   ]

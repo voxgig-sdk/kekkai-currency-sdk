@@ -8,16 +8,19 @@ main: kit: entity: metadata: {
     {
       name: "dataSources"
       req: false
+      short: "List of data sources used by the API"
       type: "`$ARRAY`"
     }
     {
       name: "lastUpdate"
       req: false
+      short: "Timestamp of last data update"
       type: "`$STRING`"
     }
     {
       name: "status"
       req: false
+      short: "System status"
       type: "`$STRING`"
     }
     {
@@ -28,6 +31,7 @@ main: kit: entity: metadata: {
     {
       name: "version"
       req: false
+      short: "API version"
       type: "`$STRING`"
     }
   ]

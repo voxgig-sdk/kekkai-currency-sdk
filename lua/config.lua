@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "KekkaiCurrency",
+      slug = "kekkai-currency",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -118,18 +121,22 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "date",
+            ["short"] = "Date and time of the rate",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "from",
+            ["short"] = "Source currency code",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "rate",
+            ["short"] = "Exchange rate",
             ["type"] = "`$NUMBER`",
           },
           {
             ["name"] = "to",
+            ["short"] = "Target currency code",
             ["type"] = "`$STRING`",
           },
         },
@@ -197,14 +204,17 @@ local function make_config()
         ["fields"] = {
           {
             ["name"] = "dataSources",
+            ["short"] = "List of data sources used by the API",
             ["type"] = "`$ARRAY`",
           },
           {
             ["name"] = "lastUpdate",
+            ["short"] = "Timestamp of last data update",
             ["type"] = "`$STRING`",
           },
           {
             ["name"] = "status",
+            ["short"] = "System status",
             ["type"] = "`$STRING`",
           },
           {
@@ -213,6 +223,7 @@ local function make_config()
           },
           {
             ["name"] = "version",
+            ["short"] = "API version",
             ["type"] = "`$STRING`",
           },
         },

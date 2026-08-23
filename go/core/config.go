@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "KekkaiCurrency",
+			"slug": "kekkai-currency",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -122,18 +125,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "date",
+						"short": "Date and time of the rate",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "from",
+						"short": "Source currency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rate",
+						"short": "Exchange rate",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "to",
+						"short": "Target currency code",
 						"type": "`$STRING`",
 					},
 				},
@@ -201,14 +208,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "dataSources",
+						"short": "List of data sources used by the API",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "lastUpdate",
+						"short": "Timestamp of last data update",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "System status",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -217,6 +227,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "version",
+						"short": "API version",
 						"type": "`$STRING`",
 					},
 				},

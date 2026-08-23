@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "KekkaiCurrency",
+            "slug": "kekkai-currency",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -139,18 +142,22 @@ def make_config():
         "fields": [
           {
             "name": "date",
+            "short": "Date and time of the rate",
             "type": "`$STRING`",
           },
           {
             "name": "from",
+            "short": "Source currency code",
             "type": "`$STRING`",
           },
           {
             "name": "rate",
+            "short": "Exchange rate",
             "type": "`$NUMBER`",
           },
           {
             "name": "to",
+            "short": "Target currency code",
             "type": "`$STRING`",
           },
         ],
@@ -218,14 +225,17 @@ def make_config():
         "fields": [
           {
             "name": "dataSources",
+            "short": "List of data sources used by the API",
             "type": "`$ARRAY`",
           },
           {
             "name": "lastUpdate",
+            "short": "Timestamp of last data update",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "short": "System status",
             "type": "`$STRING`",
           },
           {
@@ -234,6 +244,7 @@ def make_config():
           },
           {
             "name": "version",
+            "short": "API version",
             "type": "`$STRING`",
           },
         ],

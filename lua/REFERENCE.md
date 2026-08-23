@@ -151,10 +151,10 @@ local currency = client:Currency(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | No |  |
-| `from` | `string` | No |  |
-| `rate` | `number` | No |  |
-| `to` | `string` | No |  |
+| `date` | `string` | No | Date and time of the rate |
+| `from` | `string` | No | Source currency code |
+| `rate` | `number` | No | Exchange rate |
+| `to` | `string` | No | Target currency code |
 
 ### Operations
 
@@ -206,11 +206,11 @@ local metadata = client:Metadata(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataSources` | `table` | No |  |
-| `lastUpdate` | `string` | No |  |
-| `status` | `string` | No |  |
+| `dataSources` | `table` | No | List of data sources used by the API |
+| `lastUpdate` | `string` | No | Timestamp of last data update |
+| `status` | `string` | No | System status |
 | `supportedCurrencies` | `table` | No |  |
-| `version` | `string` | No |  |
+| `version` | `string` | No | API version |
 
 ### Operations
 

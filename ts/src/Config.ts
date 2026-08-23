@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'KekkaiCurrency',
+        slug: "kekkai-currency",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -149,18 +160,22 @@ class Config {
       "fields": [
         {
           "name": "date",
+          "short": "Date and time of the rate",
           "type": "`$STRING`"
         },
         {
           "name": "from",
+          "short": "Source currency code",
           "type": "`$STRING`"
         },
         {
           "name": "rate",
+          "short": "Exchange rate",
           "type": "`$NUMBER`"
         },
         {
           "name": "to",
+          "short": "Target currency code",
           "type": "`$STRING`"
         }
       ],
@@ -228,14 +243,17 @@ class Config {
       "fields": [
         {
           "name": "dataSources",
+          "short": "List of data sources used by the API",
           "type": "`$ARRAY`"
         },
         {
           "name": "lastUpdate",
+          "short": "Timestamp of last data update",
           "type": "`$STRING`"
         },
         {
           "name": "status",
+          "short": "System status",
           "type": "`$STRING`"
         },
         {
@@ -244,6 +262,7 @@ class Config {
         },
         {
           "name": "version",
+          "short": "API version",
           "type": "`$STRING`"
         }
       ],

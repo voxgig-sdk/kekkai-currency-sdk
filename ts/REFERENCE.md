@@ -191,10 +191,10 @@ const currency = client.Currency()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `date` | `string` | No |  |
-| `from` | `string` | No |  |
-| `rate` | `number` | No |  |
-| `to` | `string` | No |  |
+| `date` | `string` | No | Date and time of the rate |
+| `from` | `string` | No | Source currency code |
+| `rate` | `number` | No | Exchange rate |
+| `to` | `string` | No | Target currency code |
 
 ### Operations
 
@@ -244,11 +244,11 @@ const metadata = client.Metadata()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `dataSources` | `any[]` | No |  |
-| `lastUpdate` | `string` | No |  |
-| `status` | `string` | No |  |
+| `dataSources` | `any[]` | No | List of data sources used by the API |
+| `lastUpdate` | `string` | No | Timestamp of last data update |
+| `status` | `string` | No | System status |
 | `supportedCurrencies` | `Record<string, any>` | No |  |
-| `version` | `string` | No |  |
+| `version` | `string` | No | API version |
 
 ### Operations
 
