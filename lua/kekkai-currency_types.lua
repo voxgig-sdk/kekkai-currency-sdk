@@ -11,8 +11,11 @@
 ---@field rate? number
 
 ---@class ChartListMatch
----@field date? string
----@field rate? number
+---@field end_date? string
+---@field from string
+---@field interval? string
+---@field start_date? string
+---@field to string
 
 ---@class Currency
 ---@field date? string
@@ -22,9 +25,8 @@
 
 ---@class CurrencyLoadMatch
 ---@field date? string
----@field from? string
----@field rate? number
----@field to? string
+---@field from string
+---@field to string
 
 ---@class Metadata
 ---@field dataSources? table

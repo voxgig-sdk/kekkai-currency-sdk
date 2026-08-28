@@ -68,7 +68,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-currency, err := client.Currency(nil).Load(nil, nil)
+currency, err := client.Currency(nil).Load(map[string]any{"from": "example", "to": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -138,7 +138,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 currency, err := client.Currency(nil).Load(
-    nil, nil,
+    map[string]any{"from": "example", "to": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -353,7 +353,7 @@ Create an instance: `currency := client.Currency(nil)`
 #### Example: Load
 
 ```go
-currency, err := client.Currency(nil).Load(nil, nil)
+currency, err := client.Currency(nil).Load(map[string]any{"from": "from", "to": "to"}, nil)
 if err != nil {
     panic(err)
 }
@@ -390,6 +390,29 @@ if err != nil {
 }
 fmt.Println(metadatas) // the array of records
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -466,7 +489,7 @@ stores the returned data and match criteria internally.
 
 ```go
 currency := client.Currency(nil)
-currency.Load(nil, nil)
+currency.Load(map[string]any{"from": "example", "to": "example"}, nil)
 
 // currency.Data() now returns the currency data from the last load
 // currency.Match() returns the last match criteria

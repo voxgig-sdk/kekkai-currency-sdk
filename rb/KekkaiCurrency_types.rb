@@ -23,14 +23,26 @@ Chart = Struct.new(
 
 # Request payload for Chart#list.
 #
-# @!attribute [rw] date
+# @!attribute [rw] end_date
 #   @return [String, nil]
 #
-# @!attribute [rw] rate
-#   @return [Float, nil]
+# @!attribute [rw] from
+#   @return [String]
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] start_date
+#   @return [String, nil]
+#
+# @!attribute [rw] to
+#   @return [String]
 ChartListMatch = Struct.new(
-  :date,
-  :rate,
+  :end_date,
+  :from,
+  :interval,
+  :start_date,
+  :to,
   keyword_init: true
 )
 
@@ -61,17 +73,13 @@ Currency = Struct.new(
 #   @return [String, nil]
 #
 # @!attribute [rw] from
-#   @return [String, nil]
-#
-# @!attribute [rw] rate
-#   @return [Float, nil]
+#   @return [String]
 #
 # @!attribute [rw] to
-#   @return [String, nil]
+#   @return [String]
 CurrencyLoadMatch = Struct.new(
   :date,
   :from,
-  :rate,
   :to,
   keyword_init: true
 )

@@ -21,9 +21,14 @@ class Chart(TypedDict, total=False):
     rate: float
 
 
-class ChartListMatch(TypedDict, total=False):
-    date: str
-    rate: float
+class ChartListMatchRequired(TypedDict):
+    to: str
+
+
+class ChartListMatch(ChartListMatchRequired, total=False):
+    end_date: str
+    interval: str
+    start_date: str
 
 
 class Currency(TypedDict, total=False):
@@ -32,10 +37,12 @@ class Currency(TypedDict, total=False):
     to: str
 
 
-class CurrencyLoadMatch(TypedDict, total=False):
-    date: str
-    rate: float
+class CurrencyLoadMatchRequired(TypedDict):
     to: str
+
+
+class CurrencyLoadMatch(CurrencyLoadMatchRequired, total=False):
+    date: str
 
 
 class Metadata(TypedDict, total=False):

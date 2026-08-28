@@ -11,8 +11,11 @@ export interface Chart {
 }
 
 export interface ChartListMatch {
-  date?: string
-  rate?: number
+  end_date?: string
+  from: string
+  interval?: string
+  start_date?: string
+  to: string
 }
 
 export interface Currency {
@@ -24,9 +27,8 @@ export interface Currency {
 
 export interface CurrencyLoadMatch {
   date?: string
-  from?: string
-  rate?: number
-  to?: string
+  from: string
+  to: string
 }
 
 export interface Metadata {

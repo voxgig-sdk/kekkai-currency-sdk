@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  currency = client.Currency.load()
+  currency = client.Currency.load({ "from" => "example", "to" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,7 +121,7 @@ client = KekkaiCurrencySDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-currency = client.Currency.load()
+currency = client.Currency.load({ "from" => "example", "to" => "example" })
 puts currency
 ```
 
@@ -327,7 +327,7 @@ Create an instance: `currency = client.Currency`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Currency record (raises on error).
-currency = client.Currency.load()
+currency = client.Currency.load({ "from" => "from", "to" => "to" })
 ```
 
 
@@ -357,6 +357,29 @@ Create an instance: `metadata = client.Metadata`
 # list returns an Array of Metadata records (raises on error).
 metadatas = client.Metadata.list
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -436,7 +459,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 currency = client.Currency
-currency.load()
+currency.load({ "from" => "example", "to" => "example" })
 
 # currency.data_get now returns the currency data from the last load
 # currency.match_get returns the last match criteria

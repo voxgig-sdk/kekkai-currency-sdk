@@ -22,8 +22,11 @@ class Chart
 /** Request payload for Chart#list. */
 class ChartListMatch
 {
-    public ?string $date = null;
-    public ?float $rate = null;
+    public ?string $end_date = null;
+    public string $from;
+    public ?string $interval = null;
+    public ?string $start_date = null;
+    public string $to;
 }
 
 /** Currency entity data model. */
@@ -39,9 +42,8 @@ class Currency
 class CurrencyLoadMatch
 {
     public ?string $date = null;
-    public ?string $from = null;
-    public ?float $rate = null;
-    public ?string $to = null;
+    public string $from;
+    public string $to;
 }
 
 /** Metadata entity data model. */

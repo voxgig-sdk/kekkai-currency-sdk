@@ -20,8 +20,11 @@ type Chart struct {
 
 // ChartListMatch is the typed request payload for Chart.ListTyped.
 type ChartListMatch struct {
-	Date *string `json:"date,omitempty"`
-	Rate *float64 `json:"rate,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	From string `json:"from"`
+	Interval *string `json:"interval,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
+	To string `json:"to"`
 }
 
 // Currency is the typed data model for the currency entity.
@@ -35,9 +38,8 @@ type Currency struct {
 // CurrencyLoadMatch is the typed request payload for Currency.LoadTyped.
 type CurrencyLoadMatch struct {
 	Date *string `json:"date,omitempty"`
-	From *string `json:"from,omitempty"`
-	Rate *float64 `json:"rate,omitempty"`
-	To *string `json:"to,omitempty"`
+	From string `json:"from"`
+	To string `json:"to"`
 }
 
 // Metadata is the typed data model for the metadata entity.

@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const charts = await client.Chart().list()
+const charts = await client.Chart().list({ from: "example", to: "example" })
 
 for (const chart of charts) {
   console.log(chart)
@@ -54,7 +54,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const currency = await client.Currency().load()
+  const currency = await client.Currency().load({ from: "example", to: "example" })
   console.log(currency)
 } catch (err) {
   console.error('load failed:', err)
@@ -121,7 +121,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KekkaiCurrencySDK.test()
 
-const currency = await client.Currency().load()
+const currency = await client.Currency().load({ from: 'example_from', to: 'example_to' })
 // currency is the entity, populated with mock response data
 // — call currency.data() for the record itself
 console.log(currency)
@@ -142,7 +142,7 @@ Entity instances remember their last match and data:
 const entity = client.Currency()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ from: 'example_from', to: 'example_to' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -350,7 +350,7 @@ Create an instance: `const chart = client.Chart()`
 #### Example: List
 
 ```ts
-const charts = await client.Chart().list()
+const charts = await client.Chart().list({ from: "example", to: "example" })
 ```
 
 
@@ -376,7 +376,7 @@ Create an instance: `const currency = client.Currency()`
 #### Example: Load
 
 ```ts
-const currency = await client.Currency().load()
+const currency = await client.Currency().load({ from: 'from', to: 'to' })
 ```
 
 
@@ -405,6 +405,29 @@ Create an instance: `const metadata = client.Metadata()`
 ```ts
 const metadatas = await client.Metadata().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -477,7 +500,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const currency = client.Currency()
-await currency.load()
+await currency.load({ from: "example", to: "example" })
 
 // currency.data() now returns the currency data from the last `load`
 // currency.match() returns the last match criteria
