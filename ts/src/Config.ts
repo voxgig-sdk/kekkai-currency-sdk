@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -73,10 +84,12 @@ class Config {
     "chart": {
       "fields": [
         {
+          "format": "date-time",
           "name": "date",
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "rate",
           "type": "`$NUMBER`"
         }
@@ -132,9 +145,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/getChart",
-              "parts": [
-                "api",
-                "getChart"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "getChart"
+                }
               ],
               "select": {
                 "exist": [
@@ -148,7 +165,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
-              }
+              },
+              "parts": [
+                "api",
+                "getChart"
+              ]
             }
           ]
         }
@@ -160,6 +181,7 @@ class Config {
     "currency": {
       "fields": [
         {
+          "format": "date-time",
           "name": "date",
           "short": "Date and time of the rate",
           "type": "`$STRING`"
@@ -170,6 +192,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "rate",
           "short": "Exchange rate",
           "type": "`$NUMBER`"
@@ -217,9 +240,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/getRate",
-              "parts": [
-                "api",
-                "getRate"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "getRate"
+                }
               ],
               "select": {
                 "exist": [
@@ -231,7 +258,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "getRate"
+              ]
             }
           ]
         }
@@ -248,6 +279,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "date-time",
           "name": "lastUpdate",
           "short": "Timestamp of last data update",
           "type": "`$STRING`"
@@ -278,15 +310,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/api/metadata",
-              "parts": [
-                "api",
-                "metadata"
+              "segments": [
+                {
+                  "lit": "api"
+                },
+                {
+                  "lit": "metadata"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "api",
+                "metadata"
+              ]
             }
           ]
         }
@@ -302,6 +342,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

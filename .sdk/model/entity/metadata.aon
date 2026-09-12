@@ -12,6 +12,7 @@ main: kit: entity: metadata: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "lastUpdate"
       req: false
       short: "Timestamp of last data update"
@@ -44,9 +45,13 @@ main: kit: entity: metadata: {
         {
           method: "GET"
           orig: "/api/metadata"
-          parts: [
-            "api"
-            "metadata"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "metadata"
+            }
           ]
           transform: {
             req: "`reqdata`"

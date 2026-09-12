@@ -46,10 +46,12 @@ module KekkaiCurrencyConfig
         "chart" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "date",
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "rate",
               "type" => "`$NUMBER`",
             },
@@ -105,9 +107,13 @@ module KekkaiCurrencyConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/getChart",
-                  "parts" => [
-                    "api",
-                    "getChart",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "getChart",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -122,6 +128,10 @@ module KekkaiCurrencyConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
+                  "parts" => [
+                    "api",
+                    "getChart",
+                  ],
                 },
               ],
             },
@@ -133,6 +143,7 @@ module KekkaiCurrencyConfig
         "currency" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "date",
               "short" => "Date and time of the rate",
               "type" => "`$STRING`",
@@ -143,6 +154,7 @@ module KekkaiCurrencyConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "rate",
               "short" => "Exchange rate",
               "type" => "`$NUMBER`",
@@ -190,9 +202,13 @@ module KekkaiCurrencyConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/getRate",
-                  "parts" => [
-                    "api",
-                    "getRate",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "getRate",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -205,6 +221,10 @@ module KekkaiCurrencyConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "getRate",
+                  ],
                 },
               ],
             },
@@ -221,6 +241,7 @@ module KekkaiCurrencyConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "date-time",
               "name" => "lastUpdate",
               "short" => "Timestamp of last data update",
               "type" => "`$STRING`",
@@ -251,15 +272,23 @@ module KekkaiCurrencyConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/api/metadata",
-                  "parts" => [
-                    "api",
-                    "metadata",
+                  "segments" => [
+                    {
+                      "lit" => "api",
+                    },
+                    {
+                      "lit" => "metadata",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "api",
+                    "metadata",
+                  ],
                 },
               ],
             },

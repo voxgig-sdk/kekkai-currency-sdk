@@ -6,6 +6,7 @@ main: kit: entity: currency: {
 
   fields: [
     {
+      format: "date-time"
       name: "date"
       req: false
       short: "Date and time of the rate"
@@ -18,6 +19,7 @@ main: kit: entity: currency: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "rate"
       req: false
       short: "Exchange rate"
@@ -67,9 +69,13 @@ main: kit: entity: currency: {
           }
           method: "GET"
           orig: "/api/getRate"
-          parts: [
-            "api"
-            "getRate"
+          segments: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "getRate"
+            }
           ]
           select: {
             exist: [

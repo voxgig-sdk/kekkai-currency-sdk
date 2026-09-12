@@ -1,6 +1,14 @@
 # KekkaiCurrency SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -55,10 +63,12 @@ def make_config():
       "chart": {
         "fields": [
           {
+            "format": "date-time",
             "name": "date",
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "rate",
             "type": "`$NUMBER`",
           },
@@ -114,9 +124,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/getChart",
-                "parts": [
-                  "api",
-                  "getChart",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "getChart",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -131,6 +145,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "api",
+                  "getChart",
+                ],
               },
             ],
           },
@@ -142,6 +160,7 @@ def make_config():
       "currency": {
         "fields": [
           {
+            "format": "date-time",
             "name": "date",
             "short": "Date and time of the rate",
             "type": "`$STRING`",
@@ -152,6 +171,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "rate",
             "short": "Exchange rate",
             "type": "`$NUMBER`",
@@ -199,9 +219,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/getRate",
-                "parts": [
-                  "api",
-                  "getRate",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "getRate",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -214,6 +238,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "getRate",
+                ],
               },
             ],
           },
@@ -230,6 +258,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "date-time",
             "name": "lastUpdate",
             "short": "Timestamp of last data update",
             "type": "`$STRING`",
@@ -260,15 +289,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/api/metadata",
-                "parts": [
-                  "api",
-                  "metadata",
+                "segments": [
+                  {
+                    "lit": "api",
+                  },
+                  {
+                    "lit": "metadata",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "api",
+                  "metadata",
+                ],
               },
             ],
           },

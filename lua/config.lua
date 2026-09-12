@@ -34,10 +34,12 @@ local function make_config()
       ["chart"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "date",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "rate",
             ["type"] = "`$NUMBER`",
           },
@@ -93,9 +95,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/getChart",
-                ["parts"] = {
-                  "api",
-                  "getChart",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "getChart",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -110,6 +116,10 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
                 },
+                ["parts"] = {
+                  "api",
+                  "getChart",
+                },
               },
             },
           },
@@ -121,6 +131,7 @@ local function make_config()
       ["currency"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "date",
             ["short"] = "Date and time of the rate",
             ["type"] = "`$STRING`",
@@ -131,6 +142,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "rate",
             ["short"] = "Exchange rate",
             ["type"] = "`$NUMBER`",
@@ -178,9 +190,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/getRate",
-                ["parts"] = {
-                  "api",
-                  "getRate",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "getRate",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -192,6 +208,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "getRate",
                 },
               },
             },
@@ -209,6 +229,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "lastUpdate",
             ["short"] = "Timestamp of last data update",
             ["type"] = "`$STRING`",
@@ -239,14 +260,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/api/metadata",
-                ["parts"] = {
-                  "api",
-                  "metadata",
+                ["segments"] = {
+                  {
+                    ["lit"] = "api",
+                  },
+                  {
+                    ["lit"] = "metadata",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "api",
+                  "metadata",
                 },
               },
             },

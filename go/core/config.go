@@ -38,10 +38,12 @@ func MakeConfig() map[string]any {
 			"chart": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date-time",
 						"name": "date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "rate",
 						"type": "`$NUMBER`",
 					},
@@ -97,9 +99,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/getChart",
-								"parts": []any{
-									"api",
-									"getChart",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "getChart",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -114,6 +120,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body.data`",
 								},
+								"parts": []any{
+									"api",
+									"getChart",
+								},
 							},
 						},
 					},
@@ -125,6 +135,7 @@ func MakeConfig() map[string]any {
 			"currency": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"format": "date-time",
 						"name": "date",
 						"short": "Date and time of the rate",
 						"type": "`$STRING`",
@@ -135,6 +146,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "double",
 						"name": "rate",
 						"short": "Exchange rate",
 						"type": "`$NUMBER`",
@@ -182,9 +194,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/getRate",
-								"parts": []any{
-									"api",
-									"getRate",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "getRate",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -196,6 +212,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"getRate",
 								},
 							},
 						},
@@ -213,6 +233,7 @@ func MakeConfig() map[string]any {
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "lastUpdate",
 						"short": "Timestamp of last data update",
 						"type": "`$STRING`",
@@ -243,14 +264,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/api/metadata",
-								"parts": []any{
-									"api",
-									"metadata",
+								"segments": []any{
+									map[string]any{
+										"lit": "api",
+									},
+									map[string]any{
+										"lit": "metadata",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"api",
+									"metadata",
 								},
 							},
 						},
@@ -262,6 +291,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
