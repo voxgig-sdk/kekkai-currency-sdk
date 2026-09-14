@@ -105,7 +105,7 @@ local result, err = client:Currency():load({ from = "example", to = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
+| TypeScript | `@voxgig-sdk/kekkai-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
 | Python | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
 | PHP | `voxgig-sdk/kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/kekkai-currency-sdk/go` | `go get github.com/voxgig-sdk/kekkai-currency-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Currency():load({ from = "example", to = "example" })
 ### TypeScript
 
 ```ts
-import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
+import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency-sdk'
 
 const client = new KekkaiCurrencySDK()
 

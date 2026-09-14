@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
+import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency-sdk'
 
 const client = new KekkaiCurrencySDK()
 ```
@@ -489,7 +489,7 @@ kekkai-currency/
 Import the SDK from the package root:
 
 ```ts
-import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency'
+import { KekkaiCurrencySDK } from '@voxgig-sdk/kekkai-currency-sdk'
 ```
 
 ### Entity state
