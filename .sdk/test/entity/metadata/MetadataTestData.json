@@ -34,5 +34,117 @@
         "version": "scc"
       }
     }
+  },
+  "requests": {
+    "GET /api/metadata": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getMetadata",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "dataSources": {
+                      "description": "List of data sources used by the API",
+                      "example": [
+                        "CoinGecko",
+                        "ExchangeRates API"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "lastUpdate": {
+                      "description": "Timestamp of last data update",
+                      "example": "2024-01-15T12:00:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "System status",
+                      "example": "operational",
+                      "type": "string"
+                    },
+                    "supportedCurrencies": {
+                      "properties": {
+                        "crypto": {
+                          "example": [
+                            "BTC",
+                            "ETH",
+                            "LTC",
+                            "XRP"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "fiat": {
+                          "example": [
+                            "USD",
+                            "EUR",
+                            "GBP",
+                            "JPY"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "version": {
+                      "description": "API version",
+                      "example": "1.0.0",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successfully retrieved metadata"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "example": "The currency code 'XYZ' is not supported",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "example": "Invalid currency code",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "code"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

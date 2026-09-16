@@ -1,12 +1,18 @@
 # KekkaiCurrency SDK feature factory
 
 from kekkaicurrency_sdk.feature.base_feature import KekkaiCurrencyBaseFeature
+from kekkaicurrency_sdk.feature.ratelimit_feature import KekkaiCurrencyRatelimitFeature
+from kekkaicurrency_sdk.feature.retry_feature import KekkaiCurrencyRetryFeature
 from kekkaicurrency_sdk.feature.test_feature import KekkaiCurrencyTestFeature
+from kekkaicurrency_sdk.feature.timeout_feature import KekkaiCurrencyTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: KekkaiCurrencyBaseFeature(),
+    "ratelimit": lambda: KekkaiCurrencyRatelimitFeature(),
+    "retry": lambda: KekkaiCurrencyRetryFeature(),
     "test": lambda: KekkaiCurrencyTestFeature(),
+    "timeout": lambda: KekkaiCurrencyTimeoutFeature(),
 }
 
 

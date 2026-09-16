@@ -4,7 +4,10 @@ declare(strict_types=1);
 // KekkaiCurrency SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class KekkaiCurrencyFeatures
@@ -14,8 +17,14 @@ class KekkaiCurrencyFeatures
         switch ($name) {
             case "base":
                 return new KekkaiCurrencyBaseFeature();
+            case "ratelimit":
+                return new KekkaiCurrencyRatelimitFeature();
+            case "retry":
+                return new KekkaiCurrencyRetryFeature();
             case "test":
                 return new KekkaiCurrencyTestFeature();
+            case "timeout":
+                return new KekkaiCurrencyTimeoutFeature();
             default:
                 return new KekkaiCurrencyBaseFeature();
         }
@@ -31,7 +40,10 @@ class KekkaiCurrencyFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
