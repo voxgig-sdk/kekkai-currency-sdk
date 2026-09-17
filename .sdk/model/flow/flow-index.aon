@@ -1,5 +1,5 @@
 # Flows
 
-@"BasicChartFlow.aon"
-@"BasicCurrencyFlow.aon"
-@"BasicMetadataFlow.aon"
+@"./BasicChartFlow.aon"
+@"./BasicCurrencyFlow.aon"
+@"./BasicMetadataFlow.aon"

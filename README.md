@@ -105,12 +105,12 @@ local result, err = client:Currency():load({ from = "example", to = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/kekkai-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
-| Python | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
-| PHP | `voxgig-sdk/kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
+| TypeScript | `@voxgig-sdk/kekkai-currency-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/tags) |
+| Python | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/tags) |
+| PHP | `voxgig-sdk/kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/kekkai-currency-sdk/go` | `go get github.com/voxgig-sdk/kekkai-currency-sdk/go@latest` |
-| Ruby | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
-| Lua | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/releases) |
+| Ruby | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/tags) |
+| Lua | `voxgig-sdk-kekkai-currency` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kekkai-currency-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/kekkai-currency-sdk/go-cli` | `go install github.com/voxgig-sdk/kekkai-currency-sdk/go-cli/cmd/kekkai-currency@latest` |
 | Go MCP server | `github.com/voxgig-sdk/kekkai-currency-sdk/go-mcp` | `go get github.com/voxgig-sdk/kekkai-currency-sdk/go-mcp@latest` |
 

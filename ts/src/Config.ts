@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      chart: {
-      },
-
-      currency: {
-      },
-
-      metadata: {
-      },
-
+        chart: {
+        },
+  
+        currency: {
+        },
+  
+        metadata: {
+        },
+  
     }
   }
 

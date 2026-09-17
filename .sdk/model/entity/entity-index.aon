@@ -1,5 +1,5 @@
 # Entity Models
 
-@"chart.aon"
-@"currency.aon"
-@"metadata.aon"
+@"./chart.aon"
+@"./currency.aon"
+@"./metadata.aon"
