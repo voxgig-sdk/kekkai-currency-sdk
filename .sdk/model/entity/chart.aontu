@@ -1,0 +1,109 @@
+# Entity: chart
+
+main: kit: entity: chart: {
+
+  alias: field: {}
+
+  fields: {
+    date: {
+      fo: "date-time"
+      h: "Date"
+      n: "date"
+      r: false
+      t: "`$STRING`"
+    }
+    rate: {
+      fo: "double"
+      h: "Rate"
+      n: "rate"
+      r: false
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "chart"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/getChart"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "2024-12-31"
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "BTC"
+                k: "query"
+                n: "from"
+                or: "from"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "daily"
+                k: "query"
+                n: "interval"
+                or: "interval"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "2024-01-01"
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "USD"
+                k: "query"
+                n: "to"
+                or: "to"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/api/getChart"
+          q: {
+            exist: [
+              "end_date"
+              "from"
+              "interval"
+              "start_date"
+              "to"
+            ]
+          }
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "getChart"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

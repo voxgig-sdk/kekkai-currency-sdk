@@ -24,28 +24,96 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "chart": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "date",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "date": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Date",
+              "n": "date",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "rate",
-              "req": false,
-              "type": "`$NUMBER`"
+            "rate": {
+              "a": true,
+              "fo": "double",
+              "h": "Rate",
+              "n": "rate",
+              "r": false,
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "name": "chart",
           "op": {
             "list": {
@@ -53,74 +121,65 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/getChart",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "2024-12-31",
-                        "kind": "query",
-                        "name": "end_date",
-                        "orig": "end_date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2024-12-31",
+                        "k": "query",
+                        "n": "end_date",
+                        "or": "end_date",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "BTC",
-                        "kind": "query",
-                        "name": "from",
-                        "orig": "from",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "BTC",
+                        "k": "query",
+                        "n": "from",
+                        "or": "from",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "daily",
-                        "kind": "query",
-                        "name": "interval",
-                        "orig": "interval",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "daily",
+                        "k": "query",
+                        "n": "interval",
+                        "or": "interval",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "2024-01-01",
-                        "kind": "query",
-                        "name": "start_date",
-                        "orig": "start_date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2024-01-01",
+                        "k": "query",
+                        "n": "start_date",
+                        "or": "start_date",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "USD",
-                        "kind": "query",
-                        "name": "to",
-                        "orig": "to",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "USD",
+                        "k": "query",
+                        "n": "to",
+                        "or": "to",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/getChart",
-                    "json": "{\"operationId\":\"getChart\",\"parameters\":[{\"description\":\"Source currency code\",\"in\":\"query\",\"name\":\"from\",\"required\":true,\"schema\":{\"example\":\"BTC\",\"type\":\"string\"}},{\"description\":\"Target currency code\",\"in\":\"query\",\"name\":\"to\",\"required\":true,\"schema\":{\"example\":\"USD\",\"type\":\"string\"}},{\"description\":\"Start date for chart data (format: YYYY-MM-DD)\",\"in\":\"query\",\"name\":\"startDate\",\"required\":false,\"schema\":{\"example\":\"2024-01-01\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"End date for chart data (format: YYYY-MM-DD)\",\"in\":\"query\",\"name\":\"endDate\",\"required\":false,\"schema\":{\"example\":\"2024-12-31\",\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Time interval for data points (e.g., daily, weekly, monthly)\",\"in\":\"query\",\"name\":\"interval\",\"required\":false,\"schema\":{\"default\":\"daily\",\"enum\":[\"daily\",\"weekly\",\"monthly\"],\"example\":\"daily\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"date\":{\"example\":\"2024-01-01T00:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"rate\":{\"example\":42500.75,\"format\":\"double\",\"type\":\"number\"}},\"type\":\"object\"},\"type\":\"array\"},\"from\":{\"example\":\"BTC\",\"type\":\"string\"},\"interval\":{\"example\":\"daily\",\"type\":\"string\"},\"to\":{\"example\":\"USD\",\"type\":\"string\"}},\"type\":\"object\"}},\"image/png\":{\"schema\":{\"format\":\"binary\",\"type\":\"string\"}}},\"description\":\"Successfully generated chart data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/getChart",
-                  "segments": [
-                    {
-                      "lit": "api"
-                    },
-                    {
-                      "lit": "getChart"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/getChart",
+                  "q": {
                     "exist": [
                       "end_date",
                       "from",
@@ -129,7 +188,16 @@
                       "to"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "api"
+                    },
+                    {
+                      "lit": "getChart"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -146,38 +214,42 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "date",
-              "req": false,
-              "short": "Date and time of the rate",
-              "type": "`$STRING`"
+          "fields": {
+            "date": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Date",
+              "n": "date",
+              "r": false,
+              "sh": "Date and time of the rate",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "from",
-              "req": false,
-              "short": "Source currency code",
-              "type": "`$STRING`"
+            "from": {
+              "a": true,
+              "h": "From",
+              "n": "from",
+              "r": false,
+              "sh": "Source currency code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "double",
-              "name": "rate",
-              "req": false,
-              "short": "Exchange rate",
-              "type": "`$NUMBER`"
+            "rate": {
+              "a": true,
+              "fo": "double",
+              "h": "Rate",
+              "n": "rate",
+              "r": false,
+              "sh": "Exchange rate",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "to",
-              "req": false,
-              "short": "Target currency code",
-              "type": "`$STRING`"
+            "to": {
+              "a": true,
+              "h": "To",
+              "n": "to",
+              "r": false,
+              "sh": "Target currency code",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "currency",
           "op": {
             "load": {
@@ -185,48 +257,55 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /api/getRate",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": "2024-01-15",
-                        "kind": "query",
-                        "name": "date",
-                        "orig": "date",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "2024-01-15",
+                        "k": "query",
+                        "n": "date",
+                        "or": "date",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "USD",
-                        "kind": "query",
-                        "name": "from",
-                        "orig": "from",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "USD",
+                        "k": "query",
+                        "n": "from",
+                        "or": "from",
+                        "r": true,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "EUR",
-                        "kind": "query",
-                        "name": "to",
-                        "orig": "to",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "EUR",
+                        "k": "query",
+                        "n": "to",
+                        "or": "to",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /api/getRate",
-                    "json": "{\"operationId\":\"getCurrencyRate\",\"parameters\":[{\"description\":\"Source currency code (e.g., USD, BTC, EUR)\",\"in\":\"query\",\"name\":\"from\",\"required\":true,\"schema\":{\"example\":\"USD\",\"type\":\"string\"}},{\"description\":\"Target currency code (e.g., EUR, ETH, JPY)\",\"in\":\"query\",\"name\":\"to\",\"required\":true,\"schema\":{\"example\":\"EUR\",\"type\":\"string\"}},{\"description\":\"Optional date for historical rate (format: YYYY-MM-DD)\",\"in\":\"query\",\"name\":\"date\",\"required\":false,\"schema\":{\"example\":\"2024-01-15\",\"format\":\"date\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"date\":{\"description\":\"Date and time of the rate\",\"example\":\"2024-01-15T12:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"from\":{\"description\":\"Source currency code\",\"example\":\"USD\",\"type\":\"string\"},\"rate\":{\"description\":\"Exchange rate\",\"example\":0.92,\"format\":\"double\",\"type\":\"number\"},\"to\":{\"description\":\"Target currency code\",\"example\":\"EUR\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved currency rate\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Currency pair not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/getRate",
+                  "q": {
+                    "exist": [
+                      "date",
+                      "from",
+                      "to"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/getRate",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -234,14 +313,7 @@
                       "lit": "getRate"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "date",
-                      "from",
-                      "to"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -258,43 +330,48 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "dataSources",
-              "req": false,
-              "short": "List of data sources used by the API",
-              "type": "`$ARRAY`"
+          "fields": {
+            "dataSources": {
+              "a": true,
+              "h": "Data Sources",
+              "n": "dataSources",
+              "r": false,
+              "sh": "List of data sources used by the API",
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "lastUpdate",
-              "req": false,
-              "short": "Timestamp of last data update",
-              "type": "`$STRING`"
+            "lastUpdate": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Last Update",
+              "n": "lastUpdate",
+              "r": false,
+              "sh": "Timestamp of last data update",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "status",
-              "req": false,
-              "short": "System status",
-              "type": "`$STRING`"
+            "status": {
+              "a": true,
+              "h": "Status",
+              "n": "status",
+              "r": false,
+              "sh": "System status",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "supportedCurrencies",
-              "req": false,
-              "type": "`$OBJECT`"
+            "supportedCurrencies": {
+              "a": true,
+              "h": "Supported Currencies",
+              "n": "supportedCurrencies",
+              "r": false,
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "version",
-              "req": false,
-              "short": "API version",
-              "type": "`$STRING`"
+            "version": {
+              "a": true,
+              "h": "Version",
+              "n": "version",
+              "r": false,
+              "sh": "API version",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "metadata",
           "op": {
             "list": {
@@ -302,18 +379,19 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /api/metadata",
-                    "json": "{\"operationId\":\"getMetadata\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"dataSources\":{\"description\":\"List of data sources used by the API\",\"example\":[\"CoinGecko\",\"ExchangeRates API\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"lastUpdate\":{\"description\":\"Timestamp of last data update\",\"example\":\"2024-01-15T12:00:00Z\",\"format\":\"date-time\",\"type\":\"string\"},\"status\":{\"description\":\"System status\",\"example\":\"operational\",\"type\":\"string\"},\"supportedCurrencies\":{\"properties\":{\"crypto\":{\"example\":[\"BTC\",\"ETH\",\"LTC\",\"XRP\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"fiat\":{\"example\":[\"USD\",\"EUR\",\"GBP\",\"JPY\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"version\":{\"description\":\"API version\",\"example\":\"1.0.0\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successfully retrieved metadata\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"example\":400,\"type\":\"integer\"},\"details\":{\"description\":\"Additional error details\",\"example\":\"The currency code 'XYZ' is not supported\",\"type\":\"string\"},\"error\":{\"description\":\"Error message\",\"example\":\"Invalid currency code\",\"type\":\"string\"}},\"required\":[\"error\",\"code\"],\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/api/metadata",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/api/metadata",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "api"
                     },
@@ -321,8 +399,7 @@
                       "lit": "metadata"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -751,13 +828,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -777,17 +854,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "currency_ref01",
                 "srcdatavar": "currency_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -807,13 +884,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

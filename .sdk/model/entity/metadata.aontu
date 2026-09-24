@@ -1,0 +1,77 @@
+# Entity: metadata
+
+main: kit: entity: metadata: {
+
+  alias: field: {}
+
+  fields: {
+    dataSources: {
+      h: "Data Sources"
+      n: "dataSources"
+      r: false
+      sh: "List of data sources used by the API"
+      t: "`$ARRAY`"
+    }
+    lastUpdate: {
+      fo: "date-time"
+      h: "Last Update"
+      n: "lastUpdate"
+      r: false
+      sh: "Timestamp of last data update"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "System status"
+      t: "`$STRING`"
+    }
+    supportedCurrencies: {
+      h: "Supported Currencies"
+      n: "supportedCurrencies"
+      r: false
+      t: "`$OBJECT`"
+    }
+    version: {
+      h: "Version"
+      n: "version"
+      r: false
+      sh: "API version"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "metadata"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /api/metadata"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/api/metadata"
+          s: [
+            {
+              lit: "api"
+            }
+            {
+              lit: "metadata"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

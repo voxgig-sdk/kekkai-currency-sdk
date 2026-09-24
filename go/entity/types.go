@@ -1,7 +1,7 @@
 // Typed models for the KekkaiCurrency SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Chart is the typed data model for the chart entity.
 type Chart struct {
-	Date *string `json:"date,omitempty"`
-	Rate *float64 `json:"rate,omitempty"`
 }
 
 // ChartListMatch is the typed request payload for Chart.ListTyped.
@@ -29,10 +27,6 @@ type ChartListMatch struct {
 
 // Currency is the typed data model for the currency entity.
 type Currency struct {
-	Date *string `json:"date,omitempty"`
-	From *string `json:"from,omitempty"`
-	Rate *float64 `json:"rate,omitempty"`
-	To *string `json:"to,omitempty"`
 }
 
 // CurrencyLoadMatch is the typed request payload for Currency.LoadTyped.
@@ -44,11 +38,6 @@ type CurrencyLoadMatch struct {
 
 // Metadata is the typed data model for the metadata entity.
 type Metadata struct {
-	DataSources *[]any `json:"dataSources,omitempty"`
-	LastUpdate *string `json:"lastUpdate,omitempty"`
-	Status *string `json:"status,omitempty"`
-	SupportedCurrencies *map[string]any `json:"supportedCurrencies,omitempty"`
-	Version *string `json:"version,omitempty"`
 }
 
 // MetadataListMatch is the typed request payload for Metadata.ListTyped.

@@ -43,7 +43,7 @@ local charts, err = client:Chart():list()
 if err then error(err) end
 
 for _, item in ipairs(charts) do
-  print(item["date"])
+  print(item)
 end
 ```
 

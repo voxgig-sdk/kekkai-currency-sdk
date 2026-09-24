@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -144,14 +137,16 @@ class Config {
     "chart": {
       "fields": [
         {
-          "format": "date-time",
           "name": "date",
-          "type": "`$STRING`"
+          "title": "Date",
+          "type": "`$STRING`",
+          "format": "date-time"
         },
         {
-          "format": "double",
           "name": "rate",
-          "type": "`$NUMBER`"
+          "title": "Rate",
+          "type": "`$NUMBER`",
+          "format": "double"
         }
       ],
       "name": "chart",
@@ -161,47 +156,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "2024-12-31",
-                    "kind": "query",
-                    "name": "end_date",
-                    "orig": "end_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "BTC",
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "daily",
-                    "kind": "query",
-                    "name": "interval",
-                    "orig": "interval",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "2024-01-01",
-                    "kind": "query",
-                    "name": "start_date",
-                    "orig": "start_date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "USD",
-                    "kind": "query",
-                    "name": "to",
-                    "orig": "to",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api/getChart",
@@ -213,6 +167,56 @@ class Config {
                   "lit": "getChart"
                 }
               ],
+              "parts": [
+                "api",
+                "getChart"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "end_date",
+                    "orig": "end_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2024-12-31"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "BTC"
+                  },
+                  {
+                    "name": "interval",
+                    "orig": "interval",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "daily"
+                  },
+                  {
+                    "name": "start_date",
+                    "orig": "start_date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2024-01-01"
+                  },
+                  {
+                    "name": "to",
+                    "orig": "to",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "USD"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "end_date",
@@ -221,15 +225,7 @@ class Config {
                   "start_date",
                   "to"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
-              "parts": [
-                "api",
-                "getChart"
-              ]
+              }
             }
           ]
         }
@@ -241,26 +237,30 @@ class Config {
     "currency": {
       "fields": [
         {
-          "format": "date-time",
           "name": "date",
+          "title": "Date",
+          "type": "`$STRING`",
           "short": "Date and time of the rate",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "from",
-          "short": "Source currency code",
-          "type": "`$STRING`"
+          "title": "From",
+          "type": "`$STRING`",
+          "short": "Source currency code"
         },
         {
-          "format": "double",
           "name": "rate",
+          "title": "Rate",
+          "type": "`$NUMBER`",
           "short": "Exchange rate",
-          "type": "`$NUMBER`"
+          "format": "double"
         },
         {
           "name": "to",
-          "short": "Target currency code",
-          "type": "`$STRING`"
+          "title": "To",
+          "type": "`$STRING`",
+          "short": "Target currency code"
         }
       ],
       "name": "currency",
@@ -270,33 +270,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": "2024-01-15",
-                    "kind": "query",
-                    "name": "date",
-                    "orig": "date",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "USD",
-                    "kind": "query",
-                    "name": "from",
-                    "orig": "from",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "EUR",
-                    "kind": "query",
-                    "name": "to",
-                    "orig": "to",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/api/getRate",
@@ -308,21 +281,49 @@ class Config {
                   "lit": "getRate"
                 }
               ],
+              "parts": [
+                "api",
+                "getRate"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "date",
+                    "orig": "date",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "2024-01-15"
+                  },
+                  {
+                    "name": "from",
+                    "orig": "from",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "USD"
+                  },
+                  {
+                    "name": "to",
+                    "orig": "to",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true,
+                    "example": "EUR"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "date",
                   "from",
                   "to"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "api",
-                "getRate"
-              ]
+              }
             }
           ]
         }
@@ -335,28 +336,33 @@ class Config {
       "fields": [
         {
           "name": "dataSources",
-          "short": "List of data sources used by the API",
-          "type": "`$ARRAY`"
+          "title": "Data Sources",
+          "type": "`$ARRAY`",
+          "short": "List of data sources used by the API"
         },
         {
-          "format": "date-time",
           "name": "lastUpdate",
+          "title": "Last Update",
+          "type": "`$STRING`",
           "short": "Timestamp of last data update",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "status",
-          "short": "System status",
-          "type": "`$STRING`"
+          "title": "Status",
+          "type": "`$STRING`",
+          "short": "System status"
         },
         {
           "name": "supportedCurrencies",
+          "title": "Supported Currencies",
           "type": "`$OBJECT`"
         },
         {
           "name": "version",
-          "short": "API version",
-          "type": "`$STRING`"
+          "title": "Version",
+          "type": "`$STRING`",
+          "short": "API version"
         }
       ],
       "name": "metadata",
@@ -366,7 +372,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/api/metadata",
@@ -378,15 +383,17 @@ class Config {
                   "lit": "metadata"
                 }
               ],
-              "select": {},
+              "parts": [
+                "api",
+                "metadata"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "api",
-                "metadata"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

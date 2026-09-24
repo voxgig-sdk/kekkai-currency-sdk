@@ -19,7 +19,6 @@ import type {
   MetadataListMatch,
 } from '../KekkaiCurrencyTypes'
 
-// TODO: needs Entity superclass
 class MetadataEntity extends KekkaiCurrencyEntityBase<Metadata> {
 
   constructor(client: KekkaiCurrencySDK, entopts: any) {

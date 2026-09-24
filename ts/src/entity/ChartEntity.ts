@@ -19,7 +19,6 @@ import type {
   ChartListMatch,
 } from '../KekkaiCurrencyTypes'
 
-// TODO: needs Entity superclass
 class ChartEntity extends KekkaiCurrencyEntityBase<Chart> {
 
   constructor(client: KekkaiCurrencySDK, entopts: any) {

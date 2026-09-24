@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ChartEntity = void 0;
 const KekkaiCurrencyEntityBase_1 = require("../KekkaiCurrencyEntityBase");
-// TODO: needs Entity superclass
 class ChartEntity extends KekkaiCurrencyEntityBase_1.KekkaiCurrencyEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

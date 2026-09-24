@@ -114,14 +114,16 @@ class KekkaiCurrencyConfig
         'chart' => [
           'fields' => [
             [
-              'format' => 'date-time',
               'name' => 'date',
+              'title' => 'Date',
               'type' => '`$STRING`',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'double',
               'name' => 'rate',
+              'title' => 'Rate',
               'type' => '`$NUMBER`',
+              'format' => 'double',
             ],
           ],
           'name' => 'chart',
@@ -131,47 +133,6 @@ class KekkaiCurrencyConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => '2024-12-31',
-                        'kind' => 'query',
-                        'name' => 'end_date',
-                        'orig' => 'end_date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'BTC',
-                        'kind' => 'query',
-                        'name' => 'from',
-                        'orig' => 'from',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'daily',
-                        'kind' => 'query',
-                        'name' => 'interval',
-                        'orig' => 'interval',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => '2024-01-01',
-                        'kind' => 'query',
-                        'name' => 'start_date',
-                        'orig' => 'start_date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'USD',
-                        'kind' => 'query',
-                        'name' => 'to',
-                        'orig' => 'to',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/getChart',
@@ -183,6 +144,56 @@ class KekkaiCurrencyConfig
                       'lit' => 'getChart',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'getChart',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body.data`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'end_date',
+                        'orig' => 'end_date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => '2024-12-31',
+                      ],
+                      [
+                        'name' => 'from',
+                        'orig' => 'from',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 'BTC',
+                      ],
+                      [
+                        'name' => 'interval',
+                        'orig' => 'interval',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => 'daily',
+                      ],
+                      [
+                        'name' => 'start_date',
+                        'orig' => 'start_date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => '2024-01-01',
+                      ],
+                      [
+                        'name' => 'to',
+                        'orig' => 'to',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 'USD',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'end_date',
@@ -191,14 +202,6 @@ class KekkaiCurrencyConfig
                       'start_date',
                       'to',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body.data`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'getChart',
                   ],
                 ],
               ],
@@ -211,26 +214,30 @@ class KekkaiCurrencyConfig
         'currency' => [
           'fields' => [
             [
-              'format' => 'date-time',
               'name' => 'date',
-              'short' => 'Date and time of the rate',
+              'title' => 'Date',
               'type' => '`$STRING`',
+              'short' => 'Date and time of the rate',
+              'format' => 'date-time',
             ],
             [
               'name' => 'from',
-              'short' => 'Source currency code',
+              'title' => 'From',
               'type' => '`$STRING`',
+              'short' => 'Source currency code',
             ],
             [
-              'format' => 'double',
               'name' => 'rate',
-              'short' => 'Exchange rate',
+              'title' => 'Rate',
               'type' => '`$NUMBER`',
+              'short' => 'Exchange rate',
+              'format' => 'double',
             ],
             [
               'name' => 'to',
-              'short' => 'Target currency code',
+              'title' => 'To',
               'type' => '`$STRING`',
+              'short' => 'Target currency code',
             ],
           ],
           'name' => 'currency',
@@ -240,33 +247,6 @@ class KekkaiCurrencyConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'example' => '2024-01-15',
-                        'kind' => 'query',
-                        'name' => 'date',
-                        'orig' => 'date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'USD',
-                        'kind' => 'query',
-                        'name' => 'from',
-                        'orig' => 'from',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 'EUR',
-                        'kind' => 'query',
-                        'name' => 'to',
-                        'orig' => 'to',
-                        'reqd' => true,
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/getRate',
@@ -278,20 +258,48 @@ class KekkaiCurrencyConfig
                       'lit' => 'getRate',
                     ],
                   ],
+                  'parts' => [
+                    'api',
+                    'getRate',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'date',
+                        'orig' => 'date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'example' => '2024-01-15',
+                      ],
+                      [
+                        'name' => 'from',
+                        'orig' => 'from',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 'USD',
+                      ],
+                      [
+                        'name' => 'to',
+                        'orig' => 'to',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                        'reqd' => true,
+                        'example' => 'EUR',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'date',
                       'from',
                       'to',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'api',
-                    'getRate',
                   ],
                 ],
               ],
@@ -305,28 +313,33 @@ class KekkaiCurrencyConfig
           'fields' => [
             [
               'name' => 'dataSources',
-              'short' => 'List of data sources used by the API',
+              'title' => 'Data Sources',
               'type' => '`$ARRAY`',
+              'short' => 'List of data sources used by the API',
             ],
             [
-              'format' => 'date-time',
               'name' => 'lastUpdate',
-              'short' => 'Timestamp of last data update',
+              'title' => 'Last Update',
               'type' => '`$STRING`',
+              'short' => 'Timestamp of last data update',
+              'format' => 'date-time',
             ],
             [
               'name' => 'status',
-              'short' => 'System status',
+              'title' => 'Status',
               'type' => '`$STRING`',
+              'short' => 'System status',
             ],
             [
               'name' => 'supportedCurrencies',
+              'title' => 'Supported Currencies',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'version',
-              'short' => 'API version',
+              'title' => 'Version',
               'type' => '`$STRING`',
+              'short' => 'API version',
             ],
           ],
           'name' => 'metadata',
@@ -336,7 +349,6 @@ class KekkaiCurrencyConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/api/metadata',
@@ -348,15 +360,17 @@ class KekkaiCurrencyConfig
                       'lit' => 'metadata',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'api',
                     'metadata',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
