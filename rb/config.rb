@@ -143,7 +143,7 @@ module KekkaiCurrencyConfig
                     "query" => [
                       {
                         "name" => "end_date",
-                        "orig" => "end_date",
+                        "orig" => "endDate",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "2024-12-31",
@@ -165,7 +165,7 @@ module KekkaiCurrencyConfig
                       },
                       {
                         "name" => "start_date",
-                        "orig" => "start_date",
+                        "orig" => "startDate",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "2024-01-01",

@@ -134,7 +134,7 @@
                         "ex": "2024-12-31",
                         "k": "query",
                         "n": "end_date",
-                        "or": "end_date",
+                        "or": "endDate",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -161,7 +161,7 @@
                         "ex": "2024-01-01",
                         "k": "query",
                         "n": "start_date",
-                        "or": "start_date",
+                        "or": "startDate",
                         "r": false,
                         "t": "`$STRING`"
                       },
@@ -948,7 +948,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

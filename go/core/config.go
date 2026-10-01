@@ -135,7 +135,7 @@ func MakeConfig() map[string]any {
 									"query": []any{
 										map[string]any{
 											"name": "end_date",
-											"orig": "end_date",
+											"orig": "endDate",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "2024-12-31",
@@ -157,7 +157,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "start_date",
-											"orig": "start_date",
+											"orig": "startDate",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "2024-01-01",

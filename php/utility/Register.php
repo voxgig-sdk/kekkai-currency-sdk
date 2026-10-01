@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 KekkaiCurrencyUtility::setRegistrar(function (KekkaiCurrencyUtility $u): void {
     $u->clean = [KekkaiCurrencyClean::class, 'call'];
+    $u->clean_add = [KekkaiCurrencyClean::class, 'add'];
+    $u->clean_explain = [KekkaiCurrencyDone::class, 'clean_explain'];
     $u->done = [KekkaiCurrencyDone::class, 'call'];
     $u->make_error = [KekkaiCurrencyMakeError::class, 'call'];
     $u->feature_add = [KekkaiCurrencyFeatureAdd::class, 'call'];

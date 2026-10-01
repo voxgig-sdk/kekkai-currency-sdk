@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 KekkaiCurrencyUtility.registrar = ->(u) {
   u.clean = KekkaiCurrencyUtilities::Clean
+  u.clean_add = KekkaiCurrencyUtilities::CleanAdd
+  u.clean_explain = KekkaiCurrencyUtilities::CleanExplain
   u.done = KekkaiCurrencyUtilities::Done
   u.make_error = KekkaiCurrencyUtilities::MakeError
   u.feature_add = KekkaiCurrencyUtilities::FeatureAdd

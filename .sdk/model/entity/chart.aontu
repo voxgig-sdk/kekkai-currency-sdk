@@ -38,7 +38,7 @@ main: kit: entity: chart: {
                 ex: "2024-12-31"
                 k: "query"
                 n: "end_date"
-                or: "end_date"
+                or: "endDate"
                 r: false
                 t: "`$STRING`"
               }
@@ -62,7 +62,7 @@ main: kit: entity: chart: {
                 ex: "2024-01-01"
                 k: "query"
                 n: "start_date"
-                or: "start_date"
+                or: "startDate"
                 r: false
                 t: "`$STRING`"
               }

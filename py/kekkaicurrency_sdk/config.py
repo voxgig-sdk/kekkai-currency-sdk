@@ -160,7 +160,7 @@ def make_config():
                   "query": [
                     {
                       "name": "end_date",
-                      "orig": "end_date",
+                      "orig": "endDate",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "2024-12-31",
@@ -182,7 +182,7 @@ def make_config():
                     },
                     {
                       "name": "start_date",
-                      "orig": "start_date",
+                      "orig": "startDate",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "2024-01-01",
