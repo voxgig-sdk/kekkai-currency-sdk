@@ -3,5 +3,23 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API version",
+      "Date and time of the rate",
+      "Exchange rate",
+      "Kekkai is an open-source API that allows you to collect and save historical currency data from various sources. It supports both cryptocurrencies and fiat currencies, enabling users to create exchange rate charts easily.",
+      "List of data sources used by the API",
+      "Local development server",
+      "Production server",
+      "Source currency code",
+      "Successfully generated chart data",
+      "Successfully retrieved currency rate",
+      "Successfully retrieved metadata",
+      "System status",
+      "Target currency code",
+      "Timestamp of last data update"
+    ]
+  }
 }

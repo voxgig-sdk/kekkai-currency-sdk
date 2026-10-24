@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Metadata();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('metadata hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.KekkaiCurrencySDK.test(offline).Metadata().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.KekkaiCurrencySDK.test(offline).Metadata()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.KekkaiCurrencySDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Metadata().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.KekkaiCurrencySDK.test().Metadata().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.KekkaiCurrencySDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Metadata().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Metadata().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.KekkaiCurrencySDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Metadata().list({ "lastUpdate": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.KEKKAI_CURRENCY_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "dataSources": { "a": true, "h": "Data Sources", "n": "dataSources", "r": false, "sh": "List of data sources used by the API", "t": "`$ARRAY`", "key$": "dataSources", "index$": 0 }, "lastUpdate": { "a": true, "fo": "date-time", "h": "Last Update", "n": "lastUpdate", "r": false, "sh": "Timestamp of last data update", "t": "`$STRING`", "key$": "lastUpdate", "index$": 1 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "System status", "t": "`$STRING`", "key$": "status", "index$": 2 }, "supportedCurrencies": { "a": true, "h": "Supported Currencies", "n": "supportedCurrencies", "r": false, "t": "`$OBJECT`", "key$": "supportedCurrencies", "index$": 3 }, "version": { "a": true, "h": "Version", "n": "version", "r": false, "sh": "API version", "t": "`$STRING`", "key$": "version", "index$": 4 } }, "name": "metadata", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/metadata", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/api/metadata", "q": {}, "r": {}, "s": [{ "lit": "api" }, { "lit": "metadata" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "metadata", "name__orig": "metadata", "Name": "Metadata", "name_": "metadata", "name-": "metadata", "NAME": "METADATA", "index$": 2 }, { "active": true, "entity": "metadata", "key$": "BasicMetadataFlow", "kind": "basic", "name": "BasicMetadataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "metadata_ref01" } }], "index$": 0 }] }, 'Metadata', { "GET /api/metadata": { "protocol": "http", "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "dataSources": { "a": true, "h": "Data Sources", "n": "dataSources", "r": false, "sh": "List of data sources used by the API", "t": "`$ARRAY`", "key$": "dataSources", "index$": 0 }, "lastUpdate": { "a": true, "fo": "date-time", "h": "Last Update", "n": "lastUpdate", "r": false, "sh": "Timestamp of last data update", "t": "`$STRING`", "key$": "lastUpdate", "index$": 1 }, "status": { "a": true, "h": "Status", "n": "status", "r": false, "sh": "System status", "t": "`$STRING`", "key$": "status", "index$": 2 }, "supportedCurrencies": { "a": true, "h": "Supported Currencies", "n": "supportedCurrencies", "r": false, "t": "`$OBJECT`", "key$": "supportedCurrencies", "index$": 3 }, "version": { "a": true, "h": "Version", "n": "version", "r": false, "sh": "API version", "t": "`$STRING`", "key$": "version", "index$": 4 } }, "name": "metadata", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /api/metadata", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/api/metadata", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "api" }, { "lit": "metadata" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "metadata", "name__orig": "metadata", "Name": "Metadata", "name_": "metadata", "name-": "metadata", "NAME": "METADATA", "index$": 2 }, { "active": true, "entity": "metadata", "key$": "BasicMetadataFlow", "kind": "basic", "name": "BasicMetadataFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "metadata_ref01" } }], "index$": 0 }] }, 'Metadata', { "GET /api/metadata": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const metadata_ref01_list = (await metadata_ref01_ent.list(metadata_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

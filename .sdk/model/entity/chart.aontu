@@ -80,12 +80,20 @@ main: kit: entity: chart: {
           o: "/api/getChart"
           q: {
             exist: [
-              "end_date"
               "from"
-              "interval"
-              "start_date"
               "to"
             ]
+          }
+          rs: {
+            alternatives: [
+              {
+                binary: true
+                kind: "raw"
+                media: "image/png"
+              }
+            ]
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

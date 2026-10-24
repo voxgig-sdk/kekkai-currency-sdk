@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { KekkaiCurrencySDK, BaseFeature, stdutil } from '../../..'
+import { KekkaiCurrencySDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('CurrencyEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = KekkaiCurrencySDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Currency().load({"date":1,"from":"x","to":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.KEKKAI_CURRENCY_TEST_LIVE
@@ -51,7 +63,7 @@ describe('CurrencyEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"date":{"a":true,"fo":"date-time","h":"Date","n":"date","r":false,"sh":"Date and time of the rate","t":"`$STRING`","key$":"date","index$":0},"from":{"a":true,"h":"From","n":"from","r":false,"sh":"Source currency code","t":"`$STRING`","key$":"from","index$":1},"rate":{"a":true,"fo":"double","h":"Rate","n":"rate","r":false,"sh":"Exchange rate","t":"`$NUMBER`","key$":"rate","index$":2},"to":{"a":true,"h":"To","n":"to","r":false,"sh":"Target currency code","t":"`$STRING`","key$":"to","index$":3}},"name":"currency","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/getRate","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"2024-01-15","k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"USD","k":"query","n":"from","or":"from","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"EUR","k":"query","n":"to","or":"to","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/getRate","q":{"exist":["date","from","to"]},"r":{},"s":[{"lit":"api"},{"lit":"getRate"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"currency","name__orig":"currency","Name":"Currency","name_":"currency","name-":"currency","NAME":"CURRENCY","index$":1}, {"active":true,"entity":"currency","key$":"BasicCurrencyFlow","kind":"basic","name":"BasicCurrencyFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"currency_ref01","srcdatavar":"currency_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-currency_ref01"}}],"index$":0}]}, 'Currency', {"GET /api/getRate":{"protocol":"http","parameters":[{"name":"from","in":"query","description":"Source currency code (e.g., USD, BTC, EUR)","required":true,"schema":{"type":"string","example":"USD"},"index$":0},{"name":"to","in":"query","description":"Target currency code (e.g., EUR, ETH, JPY)","required":true,"schema":{"type":"string","example":"EUR"},"index$":1},{"name":"date","in":"query","description":"Optional date for historical rate (format: YYYY-MM-DD)","required":false,"schema":{"type":"string","format":"date","example":"2024-01-15"},"index$":2}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"date":{"a":true,"fo":"date-time","h":"Date","n":"date","r":false,"sh":"Date and time of the rate","t":"`$STRING`","key$":"date","index$":0},"from":{"a":true,"h":"From","n":"from","r":false,"sh":"Source currency code","t":"`$STRING`","key$":"from","index$":1},"rate":{"a":true,"fo":"double","h":"Rate","n":"rate","r":false,"sh":"Exchange rate","t":"`$NUMBER`","key$":"rate","index$":2},"to":{"a":true,"h":"To","n":"to","r":false,"sh":"Target currency code","t":"`$STRING`","key$":"to","index$":3}},"name":"currency","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /api/getRate","source":"openapi3","version":2},"g":{"query":[{"a":true,"ex":"2024-01-15","k":"query","n":"date","or":"date","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"USD","k":"query","n":"from","or":"from","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"EUR","k":"query","n":"to","or":"to","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/api/getRate","q":{"exist":["from","to"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"getRate"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"currency","name__orig":"currency","Name":"Currency","name_":"currency","name-":"currency","NAME":"CURRENCY","index$":1}, {"active":true,"entity":"currency","key$":"BasicCurrencyFlow","kind":"basic","name":"BasicCurrencyFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"currency_ref01","srcdatavar":"currency_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-currency_ref01"}}],"index$":0}]}, 'Currency', {"GET /api/getRate":{"protocol":"http","parameters":[{"name":"from","in":"query","description":"Source currency code (e.g., USD, BTC, EUR)","required":true,"schema":{"type":"string","example":"USD"},"index$":0},{"name":"to","in":"query","description":"Target currency code (e.g., EUR, ETH, JPY)","required":true,"schema":{"type":"string","example":"EUR"},"index$":1},{"name":"date","in":"query","description":"Optional date for historical rate (format: YYYY-MM-DD)","required":false,"schema":{"type":"string","format":"date","example":"2024-01-15"},"index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('CurrencyEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

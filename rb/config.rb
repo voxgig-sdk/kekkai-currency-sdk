@@ -79,6 +79,7 @@ module KekkaiCurrencyConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -182,12 +183,20 @@ module KekkaiCurrencyConfig
                   },
                   "select" => {
                     "exist" => [
-                      "end_date",
                       "from",
-                      "interval",
-                      "start_date",
                       "to",
                     ],
+                  },
+                  "response" => {
+                    "alternatives" => [
+                      {
+                        "binary" => true,
+                        "kind" => "raw",
+                        "media" => "image/png",
+                      },
+                    ],
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -261,6 +270,7 @@ module KekkaiCurrencyConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "2024-01-15",
+                        "field" => true,
                       },
                       {
                         "name" => "from",
@@ -269,6 +279,7 @@ module KekkaiCurrencyConfig
                         "kind" => "query",
                         "reqd" => true,
                         "example" => "USD",
+                        "field" => true,
                       },
                       {
                         "name" => "to",
@@ -277,15 +288,19 @@ module KekkaiCurrencyConfig
                         "kind" => "query",
                         "reqd" => true,
                         "example" => "EUR",
+                        "field" => true,
                       },
                     ],
                   },
                   "select" => {
                     "exist" => [
-                      "date",
                       "from",
                       "to",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],
@@ -357,6 +372,10 @@ module KekkaiCurrencyConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },

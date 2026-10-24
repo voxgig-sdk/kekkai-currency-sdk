@@ -1,6 +1,9 @@
 # KekkaiCurrency SDK utility: prepare_body
+require_relative 'media'
 module KekkaiCurrencyUtilities
   PrepareBody = ->(ctx) {
-    ctx.op.input == "data" ? ctx.utility.transform_request.call(ctx) : nil
+    return nil unless ctx.op.input == "data"
+    return KekkaiCurrencyUtilities.raw_body(ctx.reqdata) if KekkaiCurrencyUtilities.raw_request?(ctx.point)
+    ctx.utility.transform_request.call(ctx)
   }
 end

@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -199,12 +200,20 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "end_date",
                     "from",
-                    "interval",
-                    "start_date",
                     "to",
                   ],
+                },
+                "response": {
+                  "alternatives": [
+                    {
+                      "binary": True,
+                      "kind": "raw",
+                      "media": "image/png",
+                    },
+                  ],
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -278,6 +287,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "2024-01-15",
+                      "field": True,
                     },
                     {
                       "name": "from",
@@ -286,6 +296,7 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": "USD",
+                      "field": True,
                     },
                     {
                       "name": "to",
@@ -294,15 +305,19 @@ def make_config():
                       "kind": "query",
                       "reqd": True,
                       "example": "EUR",
+                      "field": True,
                     },
                   ],
                 },
                 "select": {
                   "exist": [
-                    "date",
                     "from",
                     "to",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -374,6 +389,10 @@ def make_config():
                 },
                 "args": {},
                 "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
               },
             ],
           },

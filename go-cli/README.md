@@ -20,7 +20,7 @@ export KEKKAI_CURRENCY_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
 ./kekkai-currency-cli list chart
-./kekkai-currency-cli list currency
+./kekkai-currency-cli list metadata
 
 # 5. Override the API base URL for a single call
 KEKKAI_CURRENCY_BASE=https://api.example.com ./kekkai-currency-cli list chart

@@ -21,28 +21,42 @@ class Chart(TypedDict, total=False):
     rate: float
 
 
-class ChartListMatchRequired(TypedDict):
-    to: str
+ChartListMatchRequired = TypedDict('ChartListMatchRequired', {
+    "from": str,
+    "to": str,
+})
+
+ChartListMatchOptional = TypedDict('ChartListMatchOptional', {
+    "end_date": str,
+    "interval": str,
+    "start_date": str,
+}, total=False)
 
 
-class ChartListMatch(ChartListMatchRequired, total=False):
-    end_date: str
-    interval: str
-    start_date: str
+class ChartListMatch(ChartListMatchRequired, ChartListMatchOptional):
+    pass
 
 
-class Currency(TypedDict, total=False):
-    date: str
-    rate: float
-    to: str
+Currency = TypedDict('Currency', {
+    "date": str,
+    "from": str,
+    "rate": float,
+    "to": str,
+}, total=False)
 
 
-class CurrencyLoadMatchRequired(TypedDict):
-    to: str
+CurrencyLoadMatchRequired = TypedDict('CurrencyLoadMatchRequired', {
+    "from": str,
+    "to": str,
+})
+
+CurrencyLoadMatchOptional = TypedDict('CurrencyLoadMatchOptional', {
+    "date": str,
+}, total=False)
 
 
-class CurrencyLoadMatch(CurrencyLoadMatchRequired, total=False):
-    date: str
+class CurrencyLoadMatch(CurrencyLoadMatchRequired, CurrencyLoadMatchOptional):
+    pass
 
 
 class Metadata(TypedDict, total=False):

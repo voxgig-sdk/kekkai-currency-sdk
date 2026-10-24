@@ -67,6 +67,7 @@ local function make_config()
         },
         ["optspec"] = {
           ["clearTimer"] = "`$FUNCTION`",
+          ["now"] = "`$FUNCTION`",
           ["setTimer"] = "`$FUNCTION`",
         },
         ["strict"] = false,
@@ -170,12 +171,20 @@ local function make_config()
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "end_date",
                     "from",
-                    "interval",
-                    "start_date",
                     "to",
                   },
+                },
+                ["response"] = {
+                  ["alternatives"] = {
+                    {
+                      ["binary"] = true,
+                      ["kind"] = "raw",
+                      ["media"] = "image/png",
+                    },
+                  },
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -249,6 +258,7 @@ local function make_config()
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                       ["example"] = "2024-01-15",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "from",
@@ -257,6 +267,7 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = "USD",
+                      ["field"] = true,
                     },
                     {
                       ["name"] = "to",
@@ -265,15 +276,19 @@ local function make_config()
                       ["kind"] = "query",
                       ["reqd"] = true,
                       ["example"] = "EUR",
+                      ["field"] = true,
                     },
                   },
                 },
                 ["select"] = {
                   ["exist"] = {
-                    "date",
                     "from",
                     "to",
                   },
+                },
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
                 },
               },
             },
@@ -345,6 +360,10 @@ local function make_config()
                 },
                 ["args"] = {},
                 ["select"] = {},
+                ["response"] = {
+                  ["kind"] = "json",
+                  ["media"] = "application/json",
+                },
               },
             },
           },

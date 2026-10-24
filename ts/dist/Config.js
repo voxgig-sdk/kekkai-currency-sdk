@@ -87,6 +87,7 @@ class Config {
             },
             "optspec": {
                 "clearTimer": "`$FUNCTION`",
+                "now": "`$FUNCTION`",
                 "setTimer": "`$FUNCTION`"
             },
             "strict": false,
@@ -190,12 +191,20 @@ class Config {
                             },
                             "select": {
                                 "exist": [
-                                    "end_date",
                                     "from",
-                                    "interval",
-                                    "start_date",
                                     "to"
                                 ]
+                            },
+                            "response": {
+                                "alternatives": [
+                                    {
+                                        "binary": true,
+                                        "kind": "raw",
+                                        "media": "image/png"
+                                    }
+                                ],
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -268,7 +277,8 @@ class Config {
                                         "orig": "date",
                                         "type": "`$STRING`",
                                         "kind": "query",
-                                        "example": "2024-01-15"
+                                        "example": "2024-01-15",
+                                        "field": true
                                     },
                                     {
                                         "name": "from",
@@ -276,7 +286,8 @@ class Config {
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true,
-                                        "example": "USD"
+                                        "example": "USD",
+                                        "field": true
                                     },
                                     {
                                         "name": "to",
@@ -284,16 +295,20 @@ class Config {
                                         "type": "`$STRING`",
                                         "kind": "query",
                                         "reqd": true,
-                                        "example": "EUR"
+                                        "example": "EUR",
+                                        "field": true
                                     }
                                 ]
                             },
                             "select": {
                                 "exist": [
-                                    "date",
                                     "from",
                                     "to"
                                 ]
+                            },
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
                             }
                         }
                     ]
@@ -364,7 +379,11 @@ class Config {
                                 "res": "`body`"
                             },
                             "args": {},
-                            "select": {}
+                            "select": {},
+                            "response": {
+                                "kind": "json",
+                                "media": "application/json"
+                            }
                         }
                     ]
                 }

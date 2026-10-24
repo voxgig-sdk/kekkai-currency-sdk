@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { KekkaiCurrencySDK, BaseFeature, stdutil } from '../../..'
+import { KekkaiCurrencySDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('MetadataEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('metadata hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of KekkaiCurrencySDK.test(offline).Metadata().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of KekkaiCurrencySDK.test(offline).Metadata()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = KekkaiCurrencySDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Metadata().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of KekkaiCurrencySDK.test().Metadata().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new KekkaiCurrencySDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Metadata().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Metadata().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = KekkaiCurrencySDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Metadata().list({"lastUpdate":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.KEKKAI_CURRENCY_TEST_LIVE
@@ -51,7 +109,7 @@ describe('MetadataEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"dataSources":{"a":true,"h":"Data Sources","n":"dataSources","r":false,"sh":"List of data sources used by the API","t":"`$ARRAY`","key$":"dataSources","index$":0},"lastUpdate":{"a":true,"fo":"date-time","h":"Last Update","n":"lastUpdate","r":false,"sh":"Timestamp of last data update","t":"`$STRING`","key$":"lastUpdate","index$":1},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"System status","t":"`$STRING`","key$":"status","index$":2},"supportedCurrencies":{"a":true,"h":"Supported Currencies","n":"supportedCurrencies","r":false,"t":"`$OBJECT`","key$":"supportedCurrencies","index$":3},"version":{"a":true,"h":"Version","n":"version","r":false,"sh":"API version","t":"`$STRING`","key$":"version","index$":4}},"name":"metadata","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/metadata","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/metadata","q":{},"r":{},"s":[{"lit":"api"},{"lit":"metadata"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"metadata","name__orig":"metadata","Name":"Metadata","name_":"metadata","name-":"metadata","NAME":"METADATA","index$":2}, {"active":true,"entity":"metadata","key$":"BasicMetadataFlow","kind":"basic","name":"BasicMetadataFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"metadata_ref01"}}],"index$":0}]}, 'Metadata', {"GET /api/metadata":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"dataSources":{"a":true,"h":"Data Sources","n":"dataSources","r":false,"sh":"List of data sources used by the API","t":"`$ARRAY`","key$":"dataSources","index$":0},"lastUpdate":{"a":true,"fo":"date-time","h":"Last Update","n":"lastUpdate","r":false,"sh":"Timestamp of last data update","t":"`$STRING`","key$":"lastUpdate","index$":1},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"System status","t":"`$STRING`","key$":"status","index$":2},"supportedCurrencies":{"a":true,"h":"Supported Currencies","n":"supportedCurrencies","r":false,"t":"`$OBJECT`","key$":"supportedCurrencies","index$":3},"version":{"a":true,"h":"Version","n":"version","r":false,"sh":"API version","t":"`$STRING`","key$":"version","index$":4}},"name":"metadata","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /api/metadata","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/api/metadata","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"api"},{"lit":"metadata"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"metadata","name__orig":"metadata","Name":"Metadata","name_":"metadata","name-":"metadata","NAME":"METADATA","index$":2}, {"active":true,"entity":"metadata","key$":"BasicMetadataFlow","kind":"basic","name":"BasicMetadataFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"metadata_ref01"}}],"index$":0}]}, 'Metadata', {"GET /api/metadata":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('MetadataEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

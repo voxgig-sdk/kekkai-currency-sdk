@@ -16,19 +16,46 @@ const PLAN = [
         "path": "/api/getChart",
         "args": [],
         "select": {
-            "end_date": "v1",
             "from": "BTC",
+            "to": "USD",
+            "end_date": "2024-12-31",
             "interval": "daily",
-            "start_date": "v1",
-            "to": "USD"
+            "start_date": "2024-01-01"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json",
+            "image/png"
+        ],
         "query": [
             "from",
             "to",
             "startDate",
             "endDate",
             "interval"
+        ],
+        "queryArgs": [
+            {
+                "name": "end_date",
+                "wire": "endDate"
+            },
+            {
+                "name": "from",
+                "wire": "from"
+            },
+            {
+                "name": "interval",
+                "wire": "interval"
+            },
+            {
+                "name": "start_date",
+                "wire": "startDate"
+            },
+            {
+                "name": "to",
+                "wire": "to"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -53,15 +80,33 @@ const PLAN = [
         "path": "/api/getRate",
         "args": [],
         "select": {
-            "date": "2024-01-15",
             "from": "USD",
-            "to": "EUR"
+            "to": "EUR",
+            "date": "2024-01-15"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "from",
             "to",
             "date"
+        ],
+        "queryArgs": [
+            {
+                "name": "date",
+                "wire": "date"
+            },
+            {
+                "name": "from",
+                "wire": "from"
+            },
+            {
+                "name": "to",
+                "wire": "to"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -82,21 +127,26 @@ const PLAN = [
         "args": [],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": null,
         "status": 200,
         "sample": {
             "version": "1.0.0",
             "supportedCurrencies": {
-                "crypto": [
-                    "BTC",
-                    "ETH",
-                    "LTC"
-                ],
                 "fiat": [
                     "USD",
                     "EUR",
                     "GBP"
+                ],
+                "crypto": [
+                    "BTC",
+                    "ETH",
+                    "LTC"
                 ]
             },
             "dataSources": [
